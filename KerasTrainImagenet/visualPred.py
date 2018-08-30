@@ -112,11 +112,6 @@ def visualShow(cache, model=None):
             im.set_data( X[i] )
 
             #Show actual label and predictions on the right
-            #lbl = ims_data [ "lbl."+str(i) ]
-            #lbl.set_text ( class_names [ np.argmax( y [i,:] ) ] )
-
-            
-            #Show actual label and predictions on the right
             subplot_lbl = ims_data [ "lbl_sub."+str(i) ]
             subplot_lbl.cla ()
             subplot_lbl.autoscale(False)
