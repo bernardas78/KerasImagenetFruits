@@ -1,2 +1,25 @@
 # KerasImagenetFruits
 Fruit recognition from Imagenet datasets (Keras)
+
+Inline-style: 
+![alt text](Visuals/top5_1.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_2.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_3.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_4.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_11.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_12.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_13.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_14.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_15.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_16.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_17.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_18.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_19.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_20.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_21.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_22.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_23.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_24.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_25.jpg "Logo Title Text 1")
+![alt text](Visuals/top5_26.jpg "Logo Title Text 1")
+

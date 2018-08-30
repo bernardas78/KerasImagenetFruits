@@ -3,7 +3,7 @@ import importlib
 # initial import. Calling '' from python command line will import these modules
 # , but they will only be reloaded from files by calling re() command
 # To run:
-#   cd c:\labs\KerasTrainMnist\KerasTrainImagenet
+#   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
 #   exec(open("reimport.py").read())
 

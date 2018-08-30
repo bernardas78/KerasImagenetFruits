@@ -1,3 +1,4 @@
+from keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -5,11 +6,12 @@ from DataGen import DataGen_v1_150x150_1frame as dg_v1
 
 # Run:
 #   visualCache = vp.visualInit() #to initialize plot
-#   vp.visualShow(visualCache, model)
+#   vp.visualShow(visualCache)
 
 def visualInit():
     # Visualizes pictures randomly; waits for key-pres between visualizations
     #
+    model = load_model ("C:\\labs\models\\model_v22.h5")
 
     dataGen = dg_v1.prepDataGen()
 
@@ -79,11 +81,12 @@ def visualInit():
     cache ["rows"] = rows
     cache ["columns"] = columns
     cache ["dataGen"] = dataGen
+    cache ["model"] = model
 
     return cache
 
     
-def visualShow(cache, model=None):    
+def visualShow(cache):    
 
     ims = cache ["ims"]
     ims_data = cache ["ims_data"]
@@ -91,6 +94,7 @@ def visualShow(cache, model=None):
     rows = cache ["rows"]
     columns = cache ["columns"]
     dataGen = cache ["dataGen"]
+    model = cache ["model"]
 
     class_names = np.array(list(dataGen.class_indices.keys()))
 
@@ -146,7 +150,7 @@ def visualShow(cache, model=None):
 
         
         fig.canvas.flush_events()
-        
+        plt.savefig("C:\\labs\\KerasImagenetFruits\\Visuals\\top5_"+str(dataGen.batch_index)+".jpg")
         break
 
 def visualClose():
