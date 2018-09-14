@@ -30,6 +30,10 @@
     <Compile Include="Model\Model_v4_inception_trainbase.py" />
     <Compile Include="Model\Model_v3_inception.py" />
     <Compile Include="Model\Model_v2_addDropout.py" />
+    <Compile Include="Training\KeepTraining_v222_less_shifting.py" />
+    <Compile Include="Training\LoadAndTrain_v221_longer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Training\Train_v22_shifthorflip.py" />
     <Compile Include="Training\Train_v4_inception_trainbase.py" />
     <Compile Include="Training\Train_v3_inception.py" />
@@ -47,6 +51,9 @@
     <Compile Include="reimport.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Training\Train_v7_8x8shifts_dropout.py" />
+    <Compile Include="Training\Train_v6_12x12shifts.py" />
+    <Compile Include="Training\Train_v5_8x8shifts.py" />
     <Compile Include="visualPred.py">
       <SubType>Code</SubType>
     </Compile>

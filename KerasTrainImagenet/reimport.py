@@ -6,6 +6,7 @@ import importlib
 #   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
 #   exec(open("reimport.py").read())
+from keras.models import load_model
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
@@ -20,6 +21,9 @@ from Training import Train_v2_addDropout as t_v2
 from Training import Train_v22_shifthorflip as t_v22
 from Training import Train_v3_inception as t_v3
 from Training import Train_v4_inception_trainbase as t_v4
+from Training import Train_v5_8x8shifts as t_v5
+from Training import Train_v6_12x12shifts as t_v6
+from Training import Train_v7_8x8shifts_dropout as t_v7
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -40,6 +44,9 @@ def re():
     importlib.reload(t_v22)
     importlib.reload(t_v3)
     importlib.reload(t_v4)
+    importlib.reload(t_v5)
+    importlib.reload(t_v6)
+    importlib.reload(t_v7)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

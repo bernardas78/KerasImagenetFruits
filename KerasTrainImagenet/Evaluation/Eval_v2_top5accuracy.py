@@ -11,7 +11,7 @@ def eval ( model, test = False ):
     #   model: trained Keras model
     #
 
-    trainDataGen = dg_v1.prepDataGen( test )
+    trainDataGen = dg_v1.prepDataGen( test = test )
 
     #top 1,..5 error rates
     top_accuracy = np.zeros(5)

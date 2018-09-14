@@ -9,7 +9,7 @@
 from keras.preprocessing.image import ImageDataGenerator
 from PIL import ImageFile
 
-def prepDataGen( test = False ):
+def prepDataGen( test = False, shift_range = 0.1 ):
 
     #it used to throw file truncated error. bellow makes it tolerant to truncated files
     ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -21,8 +21,8 @@ def prepDataGen( test = False ):
 
     datagen = ImageDataGenerator(
         rescale=1./255,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
+        width_shift_range=shift_range,
+        height_shift_range=shift_range,
         horizontal_flip=True)
 
     batch_size=32
