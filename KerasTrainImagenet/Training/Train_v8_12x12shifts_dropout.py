@@ -1,7 +1,7 @@
 # Trains a model for 50 epochs: 8x8 shifts
 #
 # To run:
-#   model = t_v7.trainModel()
+#   model = t_v8.trainModel()
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from Model import Model_v2_addDropout as m_v2
@@ -15,17 +15,17 @@ def trainModel( model = None):
     # Returns: 
     #   model: trained Keras model
 
-    target_size=157
+    target_size=161
     dataGen = dg_v1.prepDataGen(target_size)
 
     if model is None:
         model = m_v2.prepModel()
 
     full_epochs = 3 # 1 epoch is full pass of data over all variants of 8x8 shifts
-                    #  8x8x2 = 128 passes through original images in 1 full epoch
-    crop_range = 8 # number of pixels to crop image (if size is 157, crops are 0-149, 1-150, ... 7-156)
+                    #  12x12 = 144 passes through original images in 1 full epoch
+    crop_range = 12 # number of pixels to crop image (if size is 161, crops are 0-149, 1-150, ... 11-160)
 
-    # full epoch is 8x8 = 64 passes over data: 1 times for each subframe
+    # full epoch is 12x12 = 144 passes over data: 1 times for each subframe
     for full_epoch in range (full_epochs):
 
         # for each subframe within a image...

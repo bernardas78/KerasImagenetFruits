@@ -24,6 +24,7 @@ from Training import Train_v4_inception_trainbase as t_v4
 from Training import Train_v5_8x8shifts as t_v5
 from Training import Train_v6_12x12shifts as t_v6
 from Training import Train_v7_8x8shifts_dropout as t_v7
+from Training import Train_v8_12x12shifts_dropout as t_v8
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -47,6 +48,7 @@ def re():
     importlib.reload(t_v5)
     importlib.reload(t_v6)
     importlib.reload(t_v7)
+    importlib.reload(t_v8)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
