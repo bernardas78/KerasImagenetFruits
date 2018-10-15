@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KerasImagenetFruits", "KerasTrainImagenet\KerasImagenetFruits.pyproj", "{612DF0E2-096F-416A-B0FC-C478C2DA750B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AF6845B-ABE2-471B-89F7-0D2D1D0B9E19}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KerasImagenetFruits", "KerasTrainImagenet\KerasImagenetFruits.pyproj", "{612DF0E2-096F-416A-B0FC-C478C2DA750B}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PreprocessImages", "PreprocessImages\PreprocessImages.pyproj", "{51D9638D-5FA5-47DD-A0F5-92F4CD1D30D3}"
 EndProject
@@ -25,5 +25,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7D39FE4-14FF-4DED-8044-1FDDA8E39CED}
 	EndGlobalSection
 EndGlobal

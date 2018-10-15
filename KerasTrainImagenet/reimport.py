@@ -15,6 +15,8 @@ from Model import Model_v1_simple1 as m_v1
 from Model import Model_v2_addDropout as m_v2
 from Model import Model_v3_inception as m_v3
 from Model import Model_v4_inception_trainbase as m_v4
+from Model import Model_v5_3cnn as m_v5
+from Model import Model_v6_4cnn as m_v6
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -25,6 +27,15 @@ from Training import Train_v5_8x8shifts as t_v5
 from Training import Train_v6_12x12shifts as t_v6
 from Training import Train_v7_8x8shifts_dropout as t_v7
 from Training import Train_v8_12x12shifts_dropout as t_v8
+from Training import Train_v20_224x224_size as t_v20
+from Training import Train_v21_cropsize_12to16 as t_v21
+from Training import Train_v23_L1_size_3_to_7 as t_v23
+from Training import Train_v26_L1_stride1to2_filters32to96_maxpool as t_v26
+from Training import Train_v30_L2_size1to5_stride1to2_filters32to256_maxpsize2to3 as t_v30
+from Training import Train_v31_addL3 as t_v31
+from Training import Train_v32_Dense128to4096 as t_v32
+from Training import Train_v33_addL4 as t_v33
+from Training import Train_v34_addDense2 as t_v34
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -39,6 +50,8 @@ def re():
     importlib.reload(m_v2)
     importlib.reload(m_v3)
     importlib.reload(m_v4)
+    importlib.reload(m_v5)
+    importlib.reload(m_v6)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -49,6 +62,15 @@ def re():
     importlib.reload(t_v6)
     importlib.reload(t_v7)
     importlib.reload(t_v8)
+    importlib.reload(t_v20)
+    importlib.reload(t_v21)
+    importlib.reload(t_v23)
+    importlib.reload(t_v26)
+    importlib.reload(t_v30)
+    importlib.reload(t_v31)
+    importlib.reload(t_v32)
+    importlib.reload(t_v33)
+    importlib.reload(t_v34)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

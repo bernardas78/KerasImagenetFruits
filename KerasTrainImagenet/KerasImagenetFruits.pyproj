@@ -27,6 +27,8 @@
     <Compile Include="Evaluation\Eval_v1_simple.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Model_v6_4cnn.py" />
+    <Compile Include="Model\Model_v5_3cnn.py" />
     <Compile Include="Model\Model_v4_inception_trainbase.py" />
     <Compile Include="Model\Model_v3_inception.py" />
     <Compile Include="Model\Model_v2_addDropout.py" />
@@ -34,6 +36,15 @@
     <Compile Include="Training\LoadAndTrain_v221_longer.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Training\Train_v34_addDense2.py" />
+    <Compile Include="Training\Train_v33_addL4.py" />
+    <Compile Include="Training\Train_v32_Dense128to4096.py" />
+    <Compile Include="Training\Train_v31_addL3.py" />
+    <Compile Include="Training\Train_v30_L2_size1to5_stride1to2_filters32to256_maxpsize2to3.py" />
+    <Compile Include="Training\Train_v26_L1_stride1to2_filters32to96_maxpool.py" />
+    <Compile Include="Training\Train_v23_L1_size_3_to_7.py" />
+    <Compile Include="Training\Train_v21_cropsize_12to16.py" />
+    <Compile Include="Training\Train_v20_224x224_size.py" />
     <Compile Include="Training\Train_v22_shifthorflip.py" />
     <Compile Include="Training\Train_v4_inception_trainbase.py" />
     <Compile Include="Training\Train_v3_inception.py" />
@@ -70,10 +81,7 @@
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
-  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
-  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
        the BeforeBuild and AfterBuild targets below. -->
@@ -82,4 +90,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>

@@ -7,7 +7,7 @@
 from keras.preprocessing.image import ImageDataGenerator
 from PIL import ImageFile
 
-def prepDataGen( target_size=150, test = False ):
+def prepDataGen( target_size=150, test = False, batch_size = 32 ):
 
     #it used to throw file truncated error. bellow makes it tolerant to truncated files
     ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -19,7 +19,8 @@ def prepDataGen( target_size=150, test = False ):
 
     datagen = ImageDataGenerator(rescale=1./255)
 
-    batch_size=32
+    #batch_size=32
+    print ("DataGen_v1_150x150_1frame.py: Batch size:", str(batch_size) )
 
     data_generator = datagen.flow_from_directory(
         data_dir,
