@@ -19,7 +19,7 @@ def prepModel( input_shape=(150,150,3), \
     L2_size = L2_size_stride_filters[0]
     L2_stride = L2_size_stride_filters[1]
     L2_filters = L2_size_stride_filters[2]
-    vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
     model = Sequential()
  
     model.add( Convolution2D ( filters = L1_filters,  kernel_size = (L1_size, L1_size),  strides = (L1_stride, L1_stride),  activation='relu',  input_shape=input_shape) )
@@ -34,8 +34,8 @@ def prepModel( input_shape=(150,150,3), \
         L2MaxPool_stride = L2MaxPool_size_stride[1]
         model.add ( MaxPooling2D ( pool_size = ( L2MaxPool_size , L2MaxPool_size ), strides = ( L2MaxPool_stride, L2MaxPool_stride ) ) )
         #model.add(MaxPooling2D(pool_size=(2,2)))
-
     model.add(Dropout(0.25))
+
     model.add(Flatten())
     model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.5))

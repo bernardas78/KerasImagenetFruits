@@ -44,8 +44,8 @@ def eval ( model, target_size=150, test = False ):
 
         cnt_m += m
 
-        if ( cnt_m / trainDataGen.batch_size % 10 ) == 0:
-            print ( "cnt_m, top_accuracy", str(cnt_m), top_accuracy )
+        #if ( cnt_m / trainDataGen.batch_size % 10 ) == 0:
+        #    print ( "cnt_m, top_accuracy", str(cnt_m), top_accuracy )
 
         # ImageDataGenerator will loop forever
         if math.ceil ( cnt_m / trainDataGen.batch_size ) >= len(trainDataGen):

@@ -23,10 +23,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataGen\AugSequence.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Evaluation\Eval_v2_top5accuracy.py" />
     <Compile Include="Evaluation\Eval_v1_simple.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Model_v7_5cnn.py" />
     <Compile Include="Model\Model_v6_4cnn.py" />
     <Compile Include="Model\Model_v5_3cnn.py" />
     <Compile Include="Model\Model_v4_inception_trainbase.py" />
@@ -36,6 +40,10 @@
     <Compile Include="Training\LoadAndTrain_v221_longer.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v37_dense4096to128.py" />
+    <Compile Include="Training\Train_v36_rmDropoutAfterCnn.py" />
+    <Compile Include="Training\Train_v35_addL5.py" />
     <Compile Include="Training\Train_v34_addDense2.py" />
     <Compile Include="Training\Train_v33_addL4.py" />
     <Compile Include="Training\Train_v32_Dense128to4096.py" />

@@ -2,7 +2,7 @@
 #   Sample downloaded from https://elitedatascience.com/keras-tutorial-deep-learning-in-python
 #
 # To run: 
-#   model = m_v5.prepModel()
+#   model = m_v6.prepModel()
 
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout
@@ -11,7 +11,10 @@ def prepModel( input_shape=(150,150,3), \
     L1_size_stride_filters = (3, 1, 32), L1MaxPool_size_stride = None, \
     L2_size_stride_filters = (3, 1, 32), L2MaxPool_size_stride = (2, 1), \
     L3_size_stride_filters = (3, 1, 384), \
-    D1_size = 128):
+    L4_size_stride_filters = (3, 1, 384),                                 L4_dropout = 0.25, \
+    L5_size_stride_filters = (3, 1, 256), L5MaxPool_size_stride = (3, 2), \
+    D1_size = 128, \
+    D2_size = None):
 
     L1_size = L1_size_stride_filters[0]
     L1_stride = L1_size_stride_filters[1]
@@ -24,6 +27,14 @@ def prepModel( input_shape=(150,150,3), \
     L3_size = L3_size_stride_filters[0]
     L3_stride = L3_size_stride_filters[1]
     L3_filters = L3_size_stride_filters[2]
+
+    L4_size = L4_size_stride_filters[0]
+    L4_stride = L4_size_stride_filters[1]
+    L4_filters = L4_size_stride_filters[2]
+
+    L5_size = L5_size_stride_filters[0]
+    L5_stride = L5_size_stride_filters[1]
+    L5_filters = L5_size_stride_filters[2]
 
     model = Sequential()
  
@@ -41,11 +52,26 @@ def prepModel( input_shape=(150,150,3), \
         #model.add(MaxPooling2D(pool_size=(2,2)))
 
     model.add( Convolution2D ( filters = L3_filters,  kernel_size = (L3_size, L3_size),  strides = (L3_stride, L3_stride),  activation='relu' ) )
-    model.add(Dropout(0.25))
+
+    model.add( Convolution2D ( filters = L4_filters,  kernel_size = (L4_size, L4_size),  strides = (L4_stride, L4_stride),  activation='relu' ) )
+    if L4_dropout > 0.:
+        model.add(Dropout(L4_dropout))
+
+    model.add( Convolution2D ( filters = L5_filters,  kernel_size = (L5_size, L5_size),  strides = (L5_stride, L5_stride),  activation='relu' ) )
+    if L5MaxPool_size_stride is not None:
+        L5MaxPool_size = L5MaxPool_size_stride[0]
+        L5MaxPool_stride = L5MaxPool_size_stride[1]
+        model.add ( MaxPooling2D ( pool_size = ( L5MaxPool_size , L5MaxPool_size ), strides = ( L5MaxPool_stride, L5MaxPool_stride ) ) )
 
     model.add(Flatten())
+    
     model.add(Dense(D1_size, activation='relu'))
     model.add(Dropout(0.5))
+    
+    if D2_size is not None:
+        model.add(Dense(D2_size, activation='relu'))
+        model.add(Dropout(0.5))
+
     model.add(Dense(20, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy',

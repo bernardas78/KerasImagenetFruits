@@ -47,6 +47,7 @@ def prepModel( input_shape=(150,150,3), \
         #model.add(MaxPooling2D(pool_size=(2,2)))
 
     model.add( Convolution2D ( filters = L3_filters,  kernel_size = (L3_size, L3_size),  strides = (L3_stride, L3_stride),  activation='relu' ) )
+
     model.add( Convolution2D ( filters = L4_filters,  kernel_size = (L4_size, L4_size),  strides = (L4_stride, L4_stride),  activation='relu' ) )
     model.add(Dropout(0.25))
 

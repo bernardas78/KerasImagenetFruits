@@ -8,6 +8,7 @@ import importlib
 #   exec(open("reimport.py").read())
 from keras.models import load_model
 
+from DataGen import AugSequence as as_v1
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
 
@@ -17,6 +18,7 @@ from Model import Model_v3_inception as m_v3
 from Model import Model_v4_inception_trainbase as m_v4
 from Model import Model_v5_3cnn as m_v5
 from Model import Model_v6_4cnn as m_v6
+from Model import Model_v7_5cnn as m_v7
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -36,6 +38,9 @@ from Training import Train_v31_addL3 as t_v31
 from Training import Train_v32_Dense128to4096 as t_v32
 from Training import Train_v33_addL4 as t_v33
 from Training import Train_v34_addDense2 as t_v34
+from Training import Train_v35_addL5 as t_v35
+from Training import Train_v36_rmDropoutAfterCnn as t_v36
+from Training import Train_v37_dense4096to128 as t_v37
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -43,6 +48,7 @@ from Evaluation import Eval_v2_top5accuracy as e_v2
 import visualPred as vp
 
 def re():
+    importlib.reload(as_v1)
     importlib.reload(dg_v1)
     importlib.reload(dg_v2)
 
@@ -52,6 +58,7 @@ def re():
     importlib.reload(m_v4)
     importlib.reload(m_v5)
     importlib.reload(m_v6)
+    importlib.reload(m_v7)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -71,6 +78,9 @@ def re():
     importlib.reload(t_v32)
     importlib.reload(t_v33)
     importlib.reload(t_v34)
+    importlib.reload(t_v35)
+    importlib.reload(t_v36)
+    importlib.reload(t_v37)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
