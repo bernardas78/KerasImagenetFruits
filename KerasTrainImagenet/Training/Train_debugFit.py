@@ -26,7 +26,7 @@ def trainModel( model = None):
 
     ################### FIT GENERATOR #################
     #dataGen = dg_v1.prepDataGen(target_size = 224, batch_size = 64 )
-    dataGen = as_v1.AugSequence ( target_size=224, batch_size=64, test=False )
+    dataGen = as_v1.AugSequence ( target_size=224, crop_range=2, batch_size=256, test=False )
 
     model = m_v7.prepModel ( input_shape = input_shape, \
         L1_size_stride_filters = (7, 2, 96), L1MaxPool_size_stride = (3, 2), \
@@ -38,56 +38,56 @@ def trainModel( model = None):
         D2_size = 128)
 
     print ("FIT GENERATOR START ", time.strftime("%H:%M:%S"))
-    model.fit_generator ( dataGen, steps_per_epoch=len(dataGen), epochs=20, verbose=2 )
+    model.fit_generator ( dataGen, steps_per_epoch=len(dataGen), epochs=2, verbose=2 )
     print ("FIT GENERATOR END ", time.strftime("%H:%M:%S"))
     e_v2.eval(model, target_size=crop_size)
     e_v2.eval(model, target_size=crop_size, test=True)
 
-    ################### FIT LOOP #################
-    model = m_v7.prepModel ( input_shape = input_shape, \
-        L1_size_stride_filters = (7, 2, 96), L1MaxPool_size_stride = (3, 2), \
-        L2_size_stride_filters = (5, 2, 256), L2MaxPool_size_stride = (3, 2), \
-        L3_size_stride_filters = (3, 1, 384), \
-        L4_size_stride_filters = (3, 1, 384), \
-        L5_size_stride_filters = (3, 1, 256), L5MaxPool_size_stride = (3, 2), \
-        D1_size = 4096, \
-        D2_size = 128)
+    #################### FIT LOOP #################
+    #model = m_v7.prepModel ( input_shape = input_shape, \
+    #    L1_size_stride_filters = (7, 2, 96), L1MaxPool_size_stride = (3, 2), \
+    #    L2_size_stride_filters = (5, 2, 256), L2MaxPool_size_stride = (3, 2), \
+    #    L3_size_stride_filters = (3, 1, 384), \
+    #    L4_size_stride_filters = (3, 1, 384), \
+    #    L5_size_stride_filters = (3, 1, 256), L5MaxPool_size_stride = (3, 2), \
+    #    D1_size = 4096, \
+    #    D2_size = 128)
 
-    #dataGen = dg_v1.prepDataGen(target_size = 224, batch_size = 64 )
-    dataGen = as_v1.AugSequence ( target_size=224, batch_size=64, test=False )
+    ##dataGen = dg_v1.prepDataGen(target_size = 224, batch_size = 64 )
+    #dataGen = as_v1.AugSequence ( target_size=224, batch_size=64, test=False )
 
-    # full epoch is 12x12 = 144 passes over data: 1 times for each subframe
-    #print (time.strftime("%H:%M:%S"))
-    for full_epoch in range (20):
+    ## full epoch is 12x12 = 144 passes over data: 1 times for each subframe
+    ##print (time.strftime("%H:%M:%S"))
+    #for full_epoch in range (20):
 
-        # for each subframe within a image...
-        for epoch_single_subframe in range ( 1 * 1 ):
+    #    # for each subframe within a image...
+    #    for epoch_single_subframe in range ( 1 * 1 ):
 
-            #Pick a starting pixel 
-            h_ind = 0 #int (epoch_single_subframe / crop_range)
-            w_ind = 0 #epoch_single_subframe % crop_range
-            size = 224 #target_size - crop_range + 1
+    #        #Pick a starting pixel 
+    #        h_ind = 0 #int (epoch_single_subframe / crop_range)
+    #        w_ind = 0 #epoch_single_subframe % crop_range
+    #        size = 224 #target_size - crop_range + 1
         
-            #shuffle data upon reset
-            #dataGen.reset()
-            iter_in_epoch = 0
+    #        #shuffle data upon reset
+    #        #dataGen.reset()
+    #        iter_in_epoch = 0
 
-            for X,Y in dataGen:
-                #print ("len(dataGen):",str(len(dataGen)))
-                X_subframe = X [ :, h_ind:h_ind+size, w_ind:w_ind+size, : ]
-                #print ("X_subframe.shape,X.shape,h_ind,w_ind,size",X_subframe.shape,X.shape,h_ind,w_ind,size)
-                model.fit ( X_subframe, Y, verbose=0 )
+    #        for X,Y in dataGen:
+    #            #print ("len(dataGen):",str(len(dataGen)))
+    #            X_subframe = X [ :, h_ind:h_ind+size, w_ind:w_ind+size, : ]
+    #            #print ("X_subframe.shape,X.shape,h_ind,w_ind,size",X_subframe.shape,X.shape,h_ind,w_ind,size)
+    #            model.fit ( X_subframe, Y, verbose=0 )
             
-                iter_in_epoch += 1
-                if iter_in_epoch >= len(dataGen):
-                    break
+    #            iter_in_epoch += 1
+    #            if iter_in_epoch >= len(dataGen):
+    #                break
 
-            #print ("full_epoch, epoch_single_subframe:",time.strftime("%H:%M:%S"), full_epoch, epoch_single_subframe )
-        #e_v1.eval(model)
-        print ("FIT START ", time.strftime("%H:%M:%S"))
-        e_v2.eval(model, target_size=crop_size)
-        e_v2.eval(model, target_size=crop_size, test=True)
-        print ("FIT END ", time.strftime("%H:%M:%S"))
-    #print (time.strftime("%H:%M:%S"))
+    #        #print ("full_epoch, epoch_single_subframe:",time.strftime("%H:%M:%S"), full_epoch, epoch_single_subframe )
+    #    #e_v1.eval(model)
+    #    print ("FIT START ", time.strftime("%H:%M:%S"))
+    #    e_v2.eval(model, target_size=crop_size)
+    #    e_v2.eval(model, target_size=crop_size, test=True)
+    #    print ("FIT END ", time.strftime("%H:%M:%S"))
+    ##print (time.strftime("%H:%M:%S"))
 
     return model

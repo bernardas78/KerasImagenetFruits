@@ -41,6 +41,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v38_useFitGen.py" />
     <Compile Include="Training\Train_v37_dense4096to128.py" />
     <Compile Include="Training\Train_v36_rmDropoutAfterCnn.py" />
     <Compile Include="Training\Train_v35_addL5.py" />
