@@ -5,13 +5,13 @@ from DataGen import DataGen_v1_150x150_1frame as dg_v1
 import math
 import numpy as np
 
-def eval ( model, target_size=150, test = False ):
+def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False ):
     # Evaluates a given model's top 1-5 accuracy rate; prints result on screen
     #
     #   model: trained Keras model
     #
 
-    trainDataGen = dg_v1.prepDataGen( target_size = target_size, test = test )
+    trainDataGen = dg_v1.prepDataGen( target_size = target_size, datasrc = datasrc, test = test )
 
     #top 1,..5 error rates
     top_accuracy = np.zeros(5)

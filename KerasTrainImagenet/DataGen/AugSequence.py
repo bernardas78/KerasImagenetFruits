@@ -6,7 +6,7 @@ import time
 
 class AugSequence (keras.utils.Sequence):
 
-    def __init__(self, crop_range=1, target_size=224, batch_size=32, test=False, debug=False):          #(self, x_set, y_set, batch_size):
+    def __init__(self, crop_range=1, target_size=224, batch_size=32, test=False, datasrc="selfCreatedGoogle", debug=False):          #(self, x_set, y_set, batch_size):
        
         self.target_size = target_size
         self.crop_range = crop_range
@@ -15,10 +15,18 @@ class AugSequence (keras.utils.Sequence):
         #it used to throw file truncated error. bellow makes it tolerant to truncated files
         ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-        if test:
-            data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\validation"
+        if datasrc == "selfCreatedGoogle":
+            if test:
+                data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\validation"
+            else:
+                data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
+        elif datasrc == "ilsvrc14":
+            if test:
+                data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
+            else:
+                data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
         else:
-            data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
+            raise Exception('AugSequence: unknown datasrc')
 
         datagen = ImageDataGenerator(rescale=1./255)
 

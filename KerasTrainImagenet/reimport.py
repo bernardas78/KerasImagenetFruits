@@ -42,6 +42,8 @@ from Training import Train_v35_addL5 as t_v35
 from Training import Train_v36_rmDropoutAfterCnn as t_v36
 from Training import Train_v37_dense4096to128 as t_v37
 from Training import Train_v38_useFitGen as t_v38
+from Training import Train_v39_crops12to1 as t_v39
+from Training import Train_v40_ilsvrc14data as t_v40
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -83,6 +85,8 @@ def re():
     importlib.reload(t_v36)
     importlib.reload(t_v37)
     importlib.reload(t_v38)
+    importlib.reload(t_v39)
+    importlib.reload(t_v40)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

@@ -7,15 +7,23 @@
 from keras.preprocessing.image import ImageDataGenerator
 from PIL import ImageFile
 
-def prepDataGen( target_size=150, test = False, batch_size = 32 ):
+def prepDataGen( target_size=150, test = False, batch_size = 32, datasrc="selfCreatedGoogle" ):
 
     #it used to throw file truncated error. bellow makes it tolerant to truncated files
     ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-    if test:
-        data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\validation"
+    if datasrc == "selfCreatedGoogle":
+        if test:
+            data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\validation"
+        else:
+            data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
+    elif datasrc == "ilsvrc14":
+        if test:
+            data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
+        else:
+            data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
     else:
-        data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
+        raise Exception('AugSequence: unknown datasrc')
 
     datagen = ImageDataGenerator(rescale=1./255)
 

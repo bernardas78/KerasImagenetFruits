@@ -1,7 +1,7 @@
 # Trains a model for 4 epochs: 12x12 shifts. Size of image trainable 224x224. with shifts of 12x12, target size is 235
 #
 # To run:
-#   model = t_v38.trainModel()
+#   model = t_v39.trainModel()
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import AugSequence as as_v1
@@ -16,7 +16,7 @@ def trainModel( model = None):
     # Returns: 
     #   model: trained Keras model
 
-    crop_range = 12 # number of pixels to crop image (if size is 235, crops are 0-223, 1-224, ... 11-234)
+    crop_range = 1 # number of pixels to crop image (if size is 235, crops are 0-223, 1-224, ... 11-234)
     target_size = 224
 
     #dataGen = dg_v1.prepDataGen(target_size = target_size, batch_size = 64 )
@@ -33,7 +33,7 @@ def trainModel( model = None):
             D1_size = 4096, \
             D2_size = 4096)
 
-    full_epochs = 1 # 1 epoch is full pass of data over all variants of 16x16 shifts
+    full_epochs = 50 # 1 epoch is full pass of data over all variants of 16x16 shifts
                      #  12x12 = 144 passes through original images in 1 full epoch
 
     # full epoch is 12x12 = 144 passes over data: 1 times for each subframe
