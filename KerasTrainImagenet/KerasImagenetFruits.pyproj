@@ -77,6 +77,7 @@
     <Compile Include="Training\Train_v7_8x8shifts_dropout.py" />
     <Compile Include="Training\Train_v6_12x12shifts.py" />
     <Compile Include="Training\Train_v5_8x8shifts.py" />
+    <Compile Include="visualNthLayer.py" />
     <Compile Include="visual2ndLayer.py">
       <SubType>Code</SubType>
     </Compile>

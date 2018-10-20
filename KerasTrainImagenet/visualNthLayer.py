@@ -9,8 +9,8 @@
 # To run: 
 #   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
-#   1.have a trained model or load from file (bellow)
-#   2.exec(open("visual2ndLayer.py").read())
+#   1.have a trained model or load from file (bellow). E.g. model = load_model("D:\\ILSVRC14\\models\\model_v15.h5")
+#   2.exec(open("visualNthLayer.py").read())
 
 from keras.backend import function
 import numpy as np  
@@ -32,7 +32,7 @@ def getHighestActivations ( model, layer_index, map_to_image_patch_multiplier, m
     #   high_activation_imgs - highest-activation-having-images' related patches for display list [90][16]
 
     # Prepare data generator
-    dataGen = dg_v1.prepDataGen()
+    dataGen = dg_v1.prepDataGen( target_size=224, test = False, batch_size = 64, datasrc="ilsvrc14")
 
     # Activation layer's dimensions (# 0th dim is #samples)
     activation_dim = (int ( model.layers [ layer_index ].output.shape[1] ), \
@@ -175,14 +175,14 @@ def defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4),
 
     return cache
 
-def updateFigure ( file_suffix, cache, img_patches ):
+def updateFigure ( file_suffix, cache, img_patches, layerLabel ):
     # Updates the figure and saves corresponding interim-layers to file
     #
     #   cache - dictionary with keys:
     #       fig - pyplot figure to update
     #       ims - list [9][16] of subplots - links to figure's suplots
     #   img_patches - [9][16] [np array shape of patch] - new image patch data
-    #
+    #   layerLabel - folder name where to save images
 
     ims = cache["ims"]
     fig = cache["fig"]
@@ -194,21 +194,38 @@ def updateFigure ( file_suffix, cache, img_patches ):
     fig.canvas.flush_events()
 
     if file_suffix is not None:
-        plt.savefig("C:\\labs\\KerasImagenetFruits\\Visuals\\interim_"+str(file_suffix)+".jpg")
+        plt.savefig("C:\\labs\\KerasImagenetFruits\\Visuals\\"+layerLabel+"\\interim_"+str(file_suffix)+".jpg")
 
-# Run it
 
-# Load model
-#   from keras.models import load_model
-#   model = load_model("c:\\labs\\models\\model_v15.h5")
 
-# 2nd layer - calculate activations
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=1, map_to_image_patch_multiplier=1, map_to_image_patch_size=5, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
 
-# 1st layer - calculate activations
-#( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=0, map_to_image_patch_multiplier=1, map_to_image_patch_size=3,  cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+# 1st layer - calculate activations v40 
+( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=0, map_to_image_patch_multiplier=2, map_to_image_patch_size=7, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (7,7,3)  )
+for i in range(10):
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L1" )
 
-#cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (3,3,3)  )
-#for i in range(10):
-#    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9] )
 
+# 2nd layer - calculate activations v40 
+( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=2, map_to_image_patch_multiplier=8, map_to_image_patch_size=27, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (27,27,3)  )
+for i in range(10):
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L2" )
+
+# 3rd layer - calculate activations v40 
+( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=4, map_to_image_patch_multiplier=16, map_to_image_patch_size=75, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (75,75,3)  )
+for i in range(10):
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L3" )
+
+# 4th layer - calculate activations v40 
+( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=107, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (107,107,3)  )
+for i in range(10):
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L4" )
+
+# 5th layer - calculate activations v40 
+( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=139, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (139,139,3)  )
+for i in range(10):
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L5" )
