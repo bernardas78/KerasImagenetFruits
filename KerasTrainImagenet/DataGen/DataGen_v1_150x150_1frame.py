@@ -19,9 +19,9 @@ def prepDataGen( target_size=150, test = False, batch_size = 32, datasrc="selfCr
             data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
     elif datasrc == "ilsvrc14":
         if test:
-            data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
+            data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
         else:
-            data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
+            data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
     else:
         raise Exception('AugSequence: unknown datasrc')
 

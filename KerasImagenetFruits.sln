@@ -5,7 +5,13 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AF6845B-ABE2-471B-89F7-0D2D1D0B9E19}"
 	ProjectSection(SolutionItems) = preProject
+		L1_intermediate.md = L1_intermediate.md
+		L2_intermediate.md = L2_intermediate.md
+		L3_intermediate.md = L3_intermediate.md
+		L4_intermediate.md = L4_intermediate.md
+		L5_intermediate.md = L5_intermediate.md
 		README.md = README.md
+		TopPredictions.md = TopPredictions.md
 	EndProjectSection
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KerasImagenetFruits", "KerasTrainImagenet\KerasImagenetFruits.pyproj", "{612DF0E2-096F-416A-B0FC-C478C2DA750B}"

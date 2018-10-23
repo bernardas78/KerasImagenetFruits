@@ -22,9 +22,9 @@ class AugSequence (keras.utils.Sequence):
                 data_dir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\train"
         elif datasrc == "ilsvrc14":
             if test:
-                data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
             else:
-                data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
         else:
             raise Exception('AugSequence: unknown datasrc')
 
@@ -43,6 +43,8 @@ class AugSequence (keras.utils.Sequence):
 
         # keep track how many items requested. Based on this counter, proper crop to be returned
         self.cnter = 0
+
+        #initiate async thread for augmented data retrieval, which will be received via __getitem__()
 
     #Length of sequence is length of directory iterator for each crop variant
     def __len__( self ):
@@ -73,7 +75,13 @@ class AugSequence (keras.utils.Sequence):
         if self.debug and self.cnter%100 == 0:
             print ( "AugSequence.py, __getitem__, self.cnter, self.len_value:", str(self.cnter), " ", self.len_value, " ", time.strftime("%H:%M:%S") )
         #print ("X.shape, y.shape, start_w, start_h, target_size, self.cnter", X.shape, y.shape, start_w, start_h, self.target_size, self.cnter)
+
         return X, y
 
     def on_epoch_end(self):
-        print ("End of epoch")
+        if self.debug:
+            print ("End of epoch")
+
+    def __del__(self):
+        if self.debug:
+            print ("AugSequence.py, __del__")

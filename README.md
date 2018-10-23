@@ -33,23 +33,24 @@
 - Green - true label (all 5 orange indicate correct label not among to 5 guesses)
 - True label at the bottom of each legend
 ![alt text](Visuals/top5_1.jpg "")
-![alt text](Visuals/top5_2.jpg "")
-![alt text](Visuals/top5_3.jpg "")
-![alt text](Visuals/top5_4.jpg "")
-![alt text](Visuals/top5_11.jpg "")
-![alt text](Visuals/top5_12.jpg "")
-![alt text](Visuals/top5_13.jpg "")
-![alt text](Visuals/top5_14.jpg "")
-![alt text](Visuals/top5_15.jpg "")
-![alt text](Visuals/top5_16.jpg "")
-![alt text](Visuals/top5_17.jpg "")
-![alt text](Visuals/top5_18.jpg "")
-![alt text](Visuals/top5_19.jpg "")
-![alt text](Visuals/top5_20.jpg "")
-![alt text](Visuals/top5_21.jpg "")
-![alt text](Visuals/top5_22.jpg "")
-![alt text](Visuals/top5_23.jpg "")
-![alt text](Visuals/top5_24.jpg "")
-![alt text](Visuals/top5_25.jpg "")
-![alt text](Visuals/top5_26.jpg "")
+[More...](TopPredictions.md)
 
+
+## Intermediate layers: 
+- As each neuron activates on a rather small patch of an image
+- I pick a random neuron from some layer
+- For the given neuron, I loop through the data set to get the images which activate the given neuron the most
+- And display these image patches
+
+How to understand the images bellow:
+- Each picture contains representations of 9 different neurons (3x3 big squares)
+- Each neuron square contains 16 (4x4) image patches which activated that neuron the most
+- Example:
+  - Image bellow represents 9 convolutional layer 3 neurons
+  - Top-left neuron has 16 images which look like a shark
+  - Middle-left neuron recongized a blue bird
+  - Middle-middle neuron has a few different classes in it
+
+![alt text](Visuals/V40/L3/interim_19.jpg "")
+
+Check more images of intermediate convolutional layers [L1](L1_intermediate.md), [L2](L2_intermediate.md), [L3](L3_intermediate.md), [L4](L4_intermediate.md), [L5](L5_intermediate.md).

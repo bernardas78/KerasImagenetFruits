@@ -1,0 +1,23 @@
+## Layer 1 neurons
+
+As first layer filters are of size (7x7), activating patches are also of the same dimensionality (zoom in to see how each image patches in 7x7)
+
+![alt text](Visuals/V40/L1/interim_1.jpg "")
+![alt text](Visuals/V40/L1/interim_2.jpg "")
+![alt text](Visuals/V40/L1/interim_3.jpg "")
+![alt text](Visuals/V40/L1/interim_4.jpg "")
+![alt text](Visuals/V40/L1/interim_5.jpg "")
+![alt text](Visuals/V40/L1/interim_6.jpg "")
+![alt text](Visuals/V40/L1/interim_7.jpg "")
+![alt text](Visuals/V40/L1/interim_8.jpg "")
+![alt text](Visuals/V40/L1/interim_9.jpg "")
+![alt text](Visuals/V40/L1/interim_10.jpg "")
+![alt text](Visuals/V40/L1/interim_11.jpg "")
+![alt text](Visuals/V40/L1/interim_12.jpg "")
+![alt text](Visuals/V40/L1/interim_13.jpg "")
+![alt text](Visuals/V40/L1/interim_14.jpg "")
+![alt text](Visuals/V40/L1/interim_15.jpg "")
+![alt text](Visuals/V40/L1/interim_16.jpg "")
+![alt text](Visuals/V40/L1/interim_17.jpg "")
+![alt text](Visuals/V40/L1/interim_18.jpg "")
+![alt text](Visuals/V40/L1/interim_19.jpg "")

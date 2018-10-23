@@ -9,11 +9,12 @@
 # To run: 
 #   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
-#   1.have a trained model or load from file (bellow). E.g. model = load_model("D:\\ILSVRC14\\models\\model_v15.h5")
+#   1.have a trained model or load from file (bellow). E.g. model = load_model("D:\\ILSVRC14\\models\\model_v40.h5")
 #   2.exec(open("visualNthLayer.py").read())
 
 from keras.backend import function
 import numpy as np  
+import math
 import matplotlib.pyplot as plt
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 
@@ -30,6 +31,7 @@ def getHighestActivations ( model, layer_index, map_to_image_patch_multiplier, m
     # Returns: tuple of
     #   high_activation_values - highest activation values np.array[90,16]
     #   high_activation_imgs - highest-activation-having-images' related patches for display list [90][16]
+    #   
 
     # Prepare data generator
     dataGen = dg_v1.prepDataGen( target_size=224, test = False, batch_size = 64, datasrc="ilsvrc14")
@@ -71,6 +73,8 @@ def getHighestActivations ( model, layer_index, map_to_image_patch_multiplier, m
     high_activation_values = np.zeros ( ( cnt_activations, cnt_images_per_activation ) )
     #    list of 16 images (with max activations) to be later displayed
     high_activation_imgs = [ [ np.random.rand ( map_to_image_patch_size, map_to_image_patch_size , 3 ) for i in range ( cnt_images_per_activation ) ] for i in range ( cnt_activations ) ]
+    #    how many images activated the given feature?
+    high_activation_cnts = np.zeros ( cnt_activations, int )
 
     # 4. Loop through data to get highest activations
     iter_in_epoch = 0
@@ -105,6 +109,8 @@ def getHighestActivations ( model, layer_index, map_to_image_patch_multiplier, m
                         h_img_patch_start [ activation_index ] : h_img_patch_end [ activation_index ] ,\
                         w_img_patch_start [ activation_index ] : w_img_patch_end [ activation_index ] ,\
                         : ] )
+                    # Increase counter of images
+                    high_activation_cnts [ activation_index ] += 1
                     
         iter_in_epoch += 1
         if debug and iter_in_epoch % 50 == 0:
@@ -112,7 +118,13 @@ def getHighestActivations ( model, layer_index, map_to_image_patch_multiplier, m
         if iter_in_epoch >= len(dataGen):
             break
 
-    return ( high_activation_values, high_activation_imgs)
+    # Eliminate activations which don't have at least 16 images which activate them
+    #print ("high_activation_cnts:",high_activation_cnts)
+    activation_whereimagesexist_indexes = np.where ( high_activation_cnts >= cnt_images_per_activation )[0]
+    high_activation_values = high_activation_values [ activation_whereimagesexist_indexes, : ]
+    high_activation_imgs = [ np.copy ( high_activation_imgs [i] ) for i in activation_whereimagesexist_indexes ]
+
+    return ( high_activation_values, high_activation_imgs )
 
 def defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (5,5,3)  ):
     # Defines a figure for display with sub-plots for each activation and sub-sub-plots for image patches
@@ -199,33 +211,43 @@ def updateFigure ( file_suffix, cache, img_patches, layerLabel ):
 
 
 
-# 1st layer - calculate activations v40 
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=0, map_to_image_patch_multiplier=2, map_to_image_patch_size=7, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+## 1st layer - calculate activations v40 
+( high_activation_values, high_activation_imgs ) = getHighestActivations ( model=model, layer_index=0, map_to_image_patch_multiplier=2, map_to_image_patch_size=7, cnt_activations = 500, cnt_images_per_activation = 16, debug = True )
 cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (7,7,3)  )
-for i in range(10):
-    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L1" )
+for i in range( math.ceil (high_activation_values.shape[0]/9.0) ):
+    min_index = i*9
+    max_index = min ( min_index + 9, high_activation_values.shape[0] )
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[min_index:max_index], layerLabel="L1" )
 
 
 # 2nd layer - calculate activations v40 
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=2, map_to_image_patch_multiplier=8, map_to_image_patch_size=27, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+( high_activation_values, high_activation_imgs ) = getHighestActivations ( model=model, layer_index=2, map_to_image_patch_multiplier=8, map_to_image_patch_size=27, cnt_activations = 500, cnt_images_per_activation = 16, debug = True )
 cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (27,27,3)  )
-for i in range(10):
-    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L2" )
+for i in range( math.ceil (high_activation_values.shape[0]/9.0) ):
+    min_index = i*9
+    max_index = min ( min_index + 9, high_activation_values.shape[0] )
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[min_index:max_index], layerLabel="L2" )
 
 # 3rd layer - calculate activations v40 
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=4, map_to_image_patch_multiplier=16, map_to_image_patch_size=75, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+( high_activation_values, high_activation_imgs ) = getHighestActivations ( model=model, layer_index=4, map_to_image_patch_multiplier=16, map_to_image_patch_size=75, cnt_activations = 500, cnt_images_per_activation = 16, debug = True )
 cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (75,75,3)  )
-for i in range(10):
-    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L3" )
+for i in range( math.ceil (high_activation_values.shape[0]/9.0) ):
+    min_index = i*9
+    max_index = min ( min_index + 9, high_activation_values.shape[0] )
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[min_index:max_index], layerLabel="L3" )
 
 # 4th layer - calculate activations v40 
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=107, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+( high_activation_values, high_activation_imgs ) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=107, cnt_activations = 500, cnt_images_per_activation = 16, debug = True )
 cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (107,107,3)  )
-for i in range(10):
-    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L4" )
+for i in range( math.ceil (high_activation_values.shape[0]/9.0) ):
+    min_index = i*9
+    max_index = min ( min_index + 9, high_activation_values.shape[0] )
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[min_index:max_index], layerLabel="L4" )
 
 # 5th layer - calculate activations v40 
-( high_activation_values, high_activation_imgs) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=139, cnt_activations = 90, cnt_images_per_activation = 16, debug = True )
+( high_activation_values, high_activation_imgs ) = getHighestActivations ( model=model, layer_index=5, map_to_image_patch_multiplier=16, map_to_image_patch_size=139, cnt_activations = 500, cnt_images_per_activation = 16, debug = True )
 cache = defineFigure ( activations_shape = (3,3), imgs_per_activation_shape = (4,4), patch_size = (139,139,3)  )
-for i in range(10):
-    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[i*9:i*9+9], layerLabel="L5" )
+for i in range( math.ceil (high_activation_values.shape[0]/9.0) ):
+    min_index = i*9
+    max_index = min ( min_index + 9, high_activation_values.shape[0] )
+    updateFigure ( file_suffix=i+1, cache=cache, img_patches=high_activation_imgs[min_index:max_index], layerLabel="L5" )

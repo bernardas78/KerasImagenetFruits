@@ -23,7 +23,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataGen\AugSequence.py">
+    <Compile Include="DataGen\AugSequence.py" />
+    <Compile Include="DataGen\AugSequence.Threaded.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Evaluation\Eval_v2_top5accuracy.py" />
@@ -41,6 +42,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v41_temp.py" />
     <Compile Include="Training\Train_v40_ilsvrc14data.py" />
     <Compile Include="Training\Train_v39_crops12to1.py" />
     <Compile Include="Training\Train_v38_useFitGen.py" />
