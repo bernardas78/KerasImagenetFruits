@@ -57,9 +57,9 @@ class AugSequence (keras.utils.Sequence):
         #print ( "Starting getitem" )
 
         #join async thread of augmented data retrieval
-        now=time.perf_counter()
+        #now=time.perf_counter()
         self.pdaThread.join()
-        print ("self.pdaThread.join() ...",time.perf_counter()-now)
+        #print ("self.pdaThread.join() ...",time.perf_counter()-now)
         del self.pdaThread
 
         #get next uncropped batch of images
@@ -104,13 +104,15 @@ class AugSequence (keras.utils.Sequence):
         return X, y
 
     def prepDataAsync(self):
+        #now=time.perf_counter()
         self.X_uncropped, self.y = next ( self.data_generator )
+        #print ("self.X_uncropped, self.y = next ...",time.perf_counter()-now)
 
     def on_epoch_end(self):
-        print ("End of epoch")
+        print ("AugSequence.py, on_epoch_end")
 
     def __del__(self):
-        print ("AugSequence.py, __del__ started")
+        #print ("AugSequence.py, __del__ started")
         #join and kill last thread
         self.pdaThread.join()
         del self.pdaThread

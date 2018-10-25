@@ -23,10 +23,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataGen\AugSequence_v3_randomcrops.py" />
     <Compile Include="DataGen\AugSequence.py" />
-    <Compile Include="DataGen\AugSequence.Threaded.py">
+    <Compile Include="DataGen\AugSequence_v2_Threaded.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Evaluation\Eval_v3_5framesaccuracy.py" />
     <Compile Include="Evaluation\Eval_v2_top5accuracy.py" />
     <Compile Include="Evaluation\Eval_v1_simple.py">
       <SubType>Code</SubType>
@@ -42,7 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
-    <Compile Include="Training\Train_v41_temp.py" />
+    <Compile Include="Training\Train_v43_eval5frames.py" />
+    <Compile Include="Training\Train_v42_randomcrops.py" />
+    <Compile Include="Training\Train_v41_Threaded.py" />
     <Compile Include="Training\Train_v40_ilsvrc14data.py" />
     <Compile Include="Training\Train_v39_crops12to1.py" />
     <Compile Include="Training\Train_v38_useFitGen.py" />

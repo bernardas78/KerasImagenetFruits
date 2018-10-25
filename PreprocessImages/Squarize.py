@@ -17,8 +17,8 @@ import time
 #angleCntPerCircle = 8   # Number of eqyal angles to divide a circle to for each image
 #edge = 50               # Edge length of a compressed image
 
-picDir = "C:\\labs\\FruitDownload\\processed_split.imagenet\\validation"
-squarePicDir = "C:\\labs\\FruitDownload\\processed_split.imagenet.square\\validation"
+picDir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20.NonSquare"
+squarePicDir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
 ind=0
 
 dirNames = []

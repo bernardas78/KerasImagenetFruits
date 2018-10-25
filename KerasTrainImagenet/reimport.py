@@ -9,6 +9,9 @@ import importlib
 from keras.models import load_model
 
 from DataGen import AugSequence as as_v1
+from DataGen import AugSequence_v2_Threaded as as_v2
+
+from DataGen import AugSequence_v3_randomcrops as as_v3
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
 
@@ -44,15 +47,21 @@ from Training import Train_v37_dense4096to128 as t_v37
 from Training import Train_v38_useFitGen as t_v38
 from Training import Train_v39_crops12to1 as t_v39
 from Training import Train_v40_ilsvrc14data as t_v40
-from Training import Train_v41_temp as t_v41
+from Training import Train_v41_Threaded as t_v41
+from Training import Train_v42_randomcrops as t_v42
+from Training import Train_v43_eval5frames as t_v43
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
+from Evaluation import Eval_v3_5framesaccuracy as e_v3
 
 import visualPred as vp
 
 def re():
     importlib.reload(as_v1)
+    importlib.reload(as_v2)
+    importlib.reload(as_v3)
+
     importlib.reload(dg_v1)
     importlib.reload(dg_v2)
 
@@ -89,8 +98,11 @@ def re():
     importlib.reload(t_v39)
     importlib.reload(t_v40)
     importlib.reload(t_v41)
+    importlib.reload(t_v42)
+    importlib.reload(t_v43)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
+    importlib.reload(e_v3)
 
     importlib.reload(vp)
