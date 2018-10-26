@@ -31,13 +31,19 @@ def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False
         # top/left, top/right, bottom/left, bottom/right, middle crop starting positions
         start_h = [0, 0, extended_target_size-target_size, extended_target_size-target_size, int ( ( extended_target_size - target_size ) / 2 ) ]
         start_w = [0, extended_target_size-target_size, 0, extended_target_size-target_size, int ( ( extended_target_size - target_size ) / 2 ) ]
-        probs = [0.2, 0.2, 0.2, 0.2, 0.2]
+        probs = [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ]
         # Run predictions for 4 corners + center crop
 
         pred = np.zeros ( shape = (m, c) )
-        for cropid in range(5):
+        for cropid in range(10):
             # Predict probabilities for each class for the prop
-            x_crop = x [ :, start_h[cropid]:start_h[cropid]+target_size, start_w[cropid]:start_w[cropid]+target_size, :  ]
+            # First 5 no hor flip; next 5 with hor flip
+            cropid_beforeflip = cropid % 5
+            if cropid<5:
+                x_crop = x [ :, start_h[cropid_beforeflip]:start_h[cropid_beforeflip]+target_size, start_w[cropid_beforeflip]:start_w[cropid_beforeflip]+target_size, :  ]
+            else:
+                # Flip horizontally: 0th axis is m (#samples); 1st axis is vertical; 2nd axis is horizontal
+                x_crop = np.flip ( x [ :, start_h[cropid_beforeflip]:start_h[cropid_beforeflip]+target_size, start_w[cropid_beforeflip]:start_w[cropid_beforeflip]+target_size, :  ], axis=2 )
             #print ( "x.shape, x_crop.shape",x.shape, x_crop.shape)
             pred_crop = model.predict ( x_crop )
             #print ( "pred_crop.shape",pred_crop.shape)

@@ -50,10 +50,13 @@ from Training import Train_v40_ilsvrc14data as t_v40
 from Training import Train_v41_Threaded as t_v41
 from Training import Train_v42_randomcrops as t_v42
 from Training import Train_v43_eval5frames as t_v43
+from Training import Train_v44_earlyStopping as t_v44
+from Training import Train_v45_eval10frames as t_v45
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
+from Evaluation import Eval_v4_10framesaccuracy as e_v4
 
 import visualPred as vp
 
@@ -100,9 +103,12 @@ def re():
     importlib.reload(t_v41)
     importlib.reload(t_v42)
     importlib.reload(t_v43)
+    importlib.reload(t_v44)
+    importlib.reload(t_v45)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
     importlib.reload(e_v3)
-
+    importlib.reload(e_v3)
+    
     importlib.reload(vp)
