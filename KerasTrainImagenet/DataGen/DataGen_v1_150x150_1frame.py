@@ -22,10 +22,15 @@ def prepDataGen( target_size=150, test = False, batch_size = 32, datasrc="selfCr
             data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
         else:
             data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
+    elif datasrc == "ilsvrc14_50classes":
+        if test:
+            data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_50"
+        else:
+            data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_50"
     else:
         raise Exception('AugSequence: unknown datasrc')
 
-    datagen = ImageDataGenerator(rescale=1./255)
+    datagen = ImageDataGenerator ( rescale=1./255 )
 
     #batch_size=32
     print ("DataGen_v1_150x150_1frame.py: Batch size:", str(batch_size) )

@@ -25,10 +25,15 @@ class AugSequence (keras.utils.Sequence):
                 data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_20"
             else:
                 data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_20"
+        elif datasrc == "ilsvrc14_50classes":
+            if test:
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_50"
+            else:
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_50"
         else:
             raise Exception('AugSequence: unknown datasrc')
 
-        datagen = ImageDataGenerator(rescale=1./255)
+        datagen = ImageDataGenerator ( rescale=1./255 )
 
         size_uncropped = target_size + crop_range - 1
 
@@ -64,6 +69,9 @@ class AugSequence (keras.utils.Sequence):
             X = np.flip ( X_uncropped [ : , start_w:start_w + self.target_size, start_h:start_h + self.target_size, : ] , axis = 1 )
         else:
             X = X_uncropped [ : , start_w:start_w + self.target_size, start_h:start_h + self.target_size, : ]
+
+        #subtract 0.5 to have negative values
+        #X -= 0.5
 
         #update counter : max value is len of entire imageset 
         self.cnter += 1

@@ -6,6 +6,7 @@
 
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.optimizers import SGD
 
 def prepModel( input_shape=(150,150,3), \
     L1_size_stride_filters = (3, 1, 32), L1MaxPool_size_stride = None, \
@@ -76,8 +77,9 @@ def prepModel( input_shape=(150,150,3), \
 
     model.add ( Dense ( Softmax_size, activation='softmax' ) )
 
+    optimizer = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
     model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
+              optimizer=optimizer,
               metrics=['accuracy'])
 
     return model
