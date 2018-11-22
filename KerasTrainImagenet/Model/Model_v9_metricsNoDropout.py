@@ -2,10 +2,12 @@
 #   Sample downloaded from https://elitedatascience.com/keras-tutorial-deep-learning-in-python
 #
 # To run: 
-#   model = m_v7.prepModel()
+#   model = m_v9.prepModel()
 
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.optimizers import SGD
+from keras.metrics import top_k_categorical_accuracy
 
 def prepModel( input_shape=(150,150,3), \
     L1_size_stride_filters = (3, 1, 32), L1MaxPool_size_stride = None, \
@@ -56,8 +58,8 @@ def prepModel( input_shape=(150,150,3), \
     model.add( Convolution2D ( filters = L3_filters,  kernel_size = (L3_size, L3_size),  strides = (L3_stride, L3_stride), padding = Conv_padding,  activation='relu' ) )
 
     model.add( Convolution2D ( filters = L4_filters,  kernel_size = (L4_size, L4_size),  strides = (L4_stride, L4_stride), padding = Conv_padding,  activation='relu' ) )
-    if L4_dropout > 0.:
-        model.add(Dropout(L4_dropout))
+    #if L4_dropout > 0.:
+    #    model.add(Dropout(L4_dropout))
 
     model.add( Convolution2D ( filters = L5_filters,  kernel_size = (L5_size, L5_size),  strides = (L5_stride, L5_stride), padding = Conv_padding,  activation='relu' ) )
     if L5MaxPool_size_stride is not None:
@@ -68,16 +70,21 @@ def prepModel( input_shape=(150,150,3), \
     model.add(Flatten())
     
     model.add(Dense(D1_size, activation='relu'))
-    model.add(Dropout(0.5))
+    #model.add(Dropout(0.5))
     
     if D2_size is not None:
         model.add(Dense(D2_size, activation='relu'))
-        model.add(Dropout(0.5))
+        #model.add(Dropout(0.5))
 
     model.add ( Dense ( Softmax_size, activation='softmax' ) )
 
+    optimizer = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+
+    def top_5(y_true, y_pred):
+        return top_k_categorical_accuracy(y_true, y_pred, k=5)
+
     model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
-              metrics=['accuracy'])
+              optimizer=optimizer,
+              metrics=['accuracy', top_5])
 
     return model

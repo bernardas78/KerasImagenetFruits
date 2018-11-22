@@ -37,6 +37,7 @@
     <Compile Include="Evaluation\Eval_v1_simple.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Model_v9_metricsNoDropout.py" />
     <Compile Include="Model\Model_v8_sgd.py" />
     <Compile Include="Model\Model_v7_5cnn.py" />
     <Compile Include="Model\Model_v6_4cnn.py" />
@@ -49,6 +50,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v49_noDrouput.py" />
     <Compile Include="Training\Train_v48_adamToSgd.py" />
     <Compile Include="Training\Train_v47_kryzhevski.py" />
     <Compile Include="Training\Train_v46_20to50classes.py" />

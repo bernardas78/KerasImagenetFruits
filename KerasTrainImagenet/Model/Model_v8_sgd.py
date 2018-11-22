@@ -2,7 +2,7 @@
 #   Sample downloaded from https://elitedatascience.com/keras-tutorial-deep-learning-in-python
 #
 # To run: 
-#   model = m_v6.prepModel()
+#   model = m_v8.prepModel()
 
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout
