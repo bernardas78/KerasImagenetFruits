@@ -5,7 +5,7 @@
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import AugSequence_v3_randomcrops as as_v3
-from Model import Model_v9_noDropout as m_v9
+from Model import Model_v8_sgd as m_v8
 import time
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -30,18 +30,16 @@ def trainModel( model = None, epochs = 1):
 
     if model is None:
         input_shape = (target_size, target_size, 3)
-        model = m_v9.prepModel ( input_shape = input_shape, \
-            L1_size_stride_filters = (11, 4, 96), L1MaxPool_size_stride = (3, 2), \
-            L2_size_stride_filters = (5, 1, 256), L2MaxPool_size_stride = (3, 2), \
-            L3_size_stride_filters = (3, 1, 384), \
-            L4_size_stride_filters = (3, 1, 384), \
-            L5_size_stride_filters = (3, 1, 256), L5MaxPool_size_stride = (3, 2), \
-            D1_size = 4096, \
-            D2_size = 4096, \
+        model = m_v8.prepModel ( input_shape = input_shape, \
+            L1_size_stride_filters = (11, 4, 96), L1MaxPool_size_stride = (3, 2), L1_dropout = 0.0, \
+            L2_size_stride_filters = (5, 1, 256), L2MaxPool_size_stride = (3, 2), L2_dropout = 0.0, \
+            L3_size_stride_filters = (3, 1, 384),                                 L3_dropout = 0.0, \
+            L4_size_stride_filters = (3, 1, 384),                                 L4_dropout = 0.0, \
+            L5_size_stride_filters = (3, 1, 256), L5MaxPool_size_stride = (3, 2), L5_dropout = 0.0, \
+            D1_size = 4096,                                                       D1_dropout = 0.2, \
+            D2_size = 4096,                                                       D2_dropout = 0.3, \
             Softmax_size = 50, \
             Conv_padding = "same" )
-
-    #epochs = 0
 
     #prepare a validation data generator, used for early stopping
     vldDataGen = dg_v1.prepDataGen( target_size=target_size, test=True, batch_size=128, datasrc=datasrc )

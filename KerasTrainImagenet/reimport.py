@@ -23,7 +23,7 @@ from Model import Model_v5_3cnn as m_v5
 from Model import Model_v6_4cnn as m_v6
 from Model import Model_v7_5cnn as m_v7
 from Model import Model_v8_sgd as m_v8
-from Model import Model_v9_metricsNoDropout as m_v9
+from Model import Model_v9_noDropout as m_v9
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -58,7 +58,8 @@ from Training import Train_v46_20to50classes as t_v46
 from Training import Train_v47_kryzhevski as t_v47
 from Training import Train_v48_adamToSgd as t_v48
 from Training import Train_v49_noDrouput as t_v49
-
+from Training import Train_v50_experimetalDropout as t_v50
+from Training import Train_v51_optimumDropout as t_v51
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -117,6 +118,8 @@ def re():
     importlib.reload(t_v47)
     importlib.reload(t_v48)
     importlib.reload(t_v49)
+    importlib.reload(t_v50)
+    importlib.reload(t_v51)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

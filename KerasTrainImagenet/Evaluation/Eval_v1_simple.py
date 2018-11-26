@@ -14,8 +14,9 @@ def eval ( model, target_size=150, datasrc = "selfCreatedGoogle" ):
     trainDataGen = dg_v1.prepDataGen( target_size=target_size, datasrc = datasrc )
 
     ev_train = model.evaluate_generator ( trainDataGen, verbose=1, steps=len(trainDataGen))
+    #ev_train = model.evaluate_generator ( trainDataGen, verbose=1, steps=1)
 
-    testDataGen = dg_v1.prepDataGen ( test=True )
+    testDataGen = dg_v1.prepDataGen ( target_size=target_size, datasrc = datasrc, test=True )
 
     ev_test = model.evaluate_generator ( testDataGen, verbose=1, steps=len(testDataGen))
 
