@@ -1,7 +1,7 @@
 # Trains a model for 4 epochs: 12x12 shifts. Size of image trainable 224x224. with shifts of 12x12, target size is 235
 #
 # To run:
-#   model = t_v51.trainModel(epochs=200)
+#   model = t_v52.trainModel(epochs=200)
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import AugSequence_v3_randomcrops as as_v3
@@ -25,8 +25,11 @@ def trainModel( model = None, epochs = 1):
     datasrc = "ilsvrc14_50classes"
     #datasrc = "ilsvrc14"
 
+    # "presumed mean" of X, subtract from all input
+    subtractMean=0.5
+
     #dataGen = dg_v1.prepDataGen(target_size = target_size, batch_size = 64 )
-    dataGen = as_v3.AugSequence ( target_size=target_size, crop_range=crop_range, batch_size=128, datasrc=datasrc, test=False, debug=True )
+    dataGen = as_v3.AugSequence ( target_size=target_size, crop_range=crop_range, allow_hor_flip=True, batch_size=128, subtractMean=subtractMean, datasrc=datasrc, test=False )
 
     if model is None:
         input_shape = (target_size, target_size, 3)
@@ -42,7 +45,8 @@ def trainModel( model = None, epochs = 1):
             Conv_padding = "same" )
 
     #prepare a validation data generator, used for early stopping
-    vldDataGen = dg_v1.prepDataGen( target_size=target_size, test=True, batch_size=128, datasrc=datasrc )
+    #vldDataGen = dg_v1.prepDataGen( target_size=target_size, test=True, batch_size=128, datasrc=datasrc )
+    vldDataGen = as_v3.AugSequence ( target_size=target_size, crop_range=1, allow_hor_flip=False, batch_size=128, subtractMean=subtractMean, datasrc=datasrc, test=True )
     callback_earlystop = EarlyStopping ( monitor='val_acc', min_delta=0.001, patience=20, verbose=1, mode='max', restore_best_weights=True )
 
     # full epoch is 12x12 = 144 passes over data: 1 times for each subframe
@@ -52,12 +56,12 @@ def trainModel( model = None, epochs = 1):
     #model.fit_generator ( dataGen, steps_per_epoch=1, epochs=epochs, verbose=2 )
 
     print ("Evaluation on train set (1 frame)")
-    e_v2.eval(model, target_size=target_size, datasrc=datasrc)
+    e_v2.eval(model, target_size=target_size, subtractMean=subtractMean, datasrc=datasrc)
     print ("Evaluation on validation set (1 frame)")
-    e_v2.eval(model, target_size=target_size, datasrc=datasrc, test=True)
+    e_v2.eval(model, target_size=target_size, subtractMean=subtractMean, datasrc=datasrc, test=True)
     print ("Evaluation on validation set (5 frames)")
-    e_v3.eval(model, target_size=target_size, datasrc=datasrc, test=True)
+    e_v3.eval(model, target_size=target_size, subtractMean=subtractMean, datasrc=datasrc, test=True)
     print ("Evaluation on validation set (10 frames)")
-    e_v4.eval(model, target_size=target_size, datasrc=datasrc, test=True)
+    e_v4.eval(model, target_size=target_size, subtractMean=subtractMean, datasrc=datasrc, test=True)
 
     return model

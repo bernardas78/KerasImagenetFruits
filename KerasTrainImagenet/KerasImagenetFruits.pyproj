@@ -50,6 +50,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v52_centeredInput.py" />
     <Compile Include="Training\Train_v51_optimumDropout.py" />
     <Compile Include="Training\Train_v50_experimetalDropout.py" />
     <Compile Include="Training\Train_v49_noDrouput.py" />

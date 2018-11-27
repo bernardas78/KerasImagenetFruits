@@ -6,10 +6,13 @@ import time
 
 class AugSequence (keras.utils.Sequence):
 
-    def __init__(self, crop_range=1, target_size=224, batch_size=32, test=False, datasrc="selfCreatedGoogle", debug=False):          #(self, x_set, y_set, batch_size):
+    def __init__(self, crop_range=1, allow_hor_flip=True, target_size=224, batch_size=32, subtractMean = 0.0, \
+        test=False, datasrc="selfCreatedGoogle", debug=False): 
        
         self.target_size = target_size
         self.crop_range = crop_range
+        self.allow_hor_flip = allow_hor_flip
+        self.subtractMean = subtractMean
         self.debug = debug
 
         #it used to throw file truncated error. bellow makes it tolerant to truncated files
@@ -65,13 +68,13 @@ class AugSequence (keras.utils.Sequence):
         start_w = np.random.randint ( 0, self.crop_range )
         start_h = np.random.randint ( 0, self.crop_range )
         horflip = np.random.choice(a=[False, True])
-        if horflip:
+        if self.allow_hor_flip and horflip:
             X = np.flip ( X_uncropped [ : , start_w:start_w + self.target_size, start_h:start_h + self.target_size, : ] , axis = 1 )
         else:
             X = X_uncropped [ : , start_w:start_w + self.target_size, start_h:start_h + self.target_size, : ]
 
-        #subtract 0.5 to have negative values
-        #X -= 0.5
+        #subtract to center values
+        X -= self.subtractMean
 
         #update counter : max value is len of entire imageset 
         self.cnter += 1

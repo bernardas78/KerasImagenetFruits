@@ -4,8 +4,9 @@
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 import math
 import numpy as np
+from DataGen import AugSequence_v3_randomcrops as as_v3
 
-def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False ):
+def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoogle", test = False ):
     # Evaluates a given model's top 1-5 accuracy rate; prints result on screen
     #
     #   model: trained Keras model
@@ -14,7 +15,9 @@ def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False
     # to use 4 corners + center for evaluation, extend the image by 15%; later use crops of target size
     extended_target_size = int ( target_size * 1.15 )
 
-    trainDataGen = dg_v1.prepDataGen( target_size = extended_target_size, datasrc = datasrc, test = test )
+    #trainDataGen = dg_v1.prepDataGen( target_size = extended_target_size, datasrc = datasrc, test = test )
+    batch_size=128
+    trainDataGen = as_v3.AugSequence ( target_size=extended_target_size, crop_range=1, allow_hor_flip=False, batch_size=batch_size, subtractMean=subtractMean, datasrc=datasrc, test=test )
 
     # top 1,..5 error rates
     top_accuracy = np.zeros(5)
@@ -38,7 +41,7 @@ def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False
         for cropid in range(5):
             # Predict probabilities for each class for the prop
             x_crop = x [ :, start_h[cropid]:start_h[cropid]+target_size, start_w[cropid]:start_w[cropid]+target_size, :  ]
-            #print ( "x.shape, x_crop.shape",x.shape, x_crop.shape)
+            #print ( "start_h, start_w, cropid,x.shape, x_crop.shape",start_h, start_w, cropid,x.shape, x_crop.shape)
             pred_crop = model.predict ( x_crop )
             #print ( "pred_crop.shape",pred_crop.shape)
             
@@ -66,7 +69,7 @@ def eval ( model, target_size = 150, datasrc = "selfCreatedGoogle", test = False
         #    print ( "cnt_m, top_accuracy", str(cnt_m), top_accuracy )
 
         # ImageDataGenerator will loop forever
-        if math.ceil ( cnt_m / trainDataGen.batch_size ) >= len(trainDataGen):
+        if math.ceil ( cnt_m / batch_size ) >= len(trainDataGen):
             break
 
     print ("top_accuracy",top_accuracy)
