@@ -1,10 +1,10 @@
 # Trains a model for 4 epochs: 12x12 shifts. Size of image trainable 224x224. with shifts of 12x12, target size is 235
 #
 # To run:
-#   model = t_v52.trainModel(epochs=200)
+#   model = t_v53.trainModel(epochs=200)
 
-from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import AugSequence_v3_randomcrops as as_v3
+from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from Model import Model_v8_sgd as m_v8
 import time
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -29,11 +29,16 @@ def trainModel( model = None, epochs = 1):
     # "presumed mean" of X, subtract from all input
     #subtractMean=0.5
 
-    # calculated mean over entire train set
-    subtractMean=np.array ( [ 0.4493, 0.4542, 0.3901 ] )
+    # Load pre-calculated RGB mean, PCA (Principal Component Analysis) eigenvectors and eigenvalues
+    #subtractMean=np.array ( [ 0.4493, 0.4542, 0.3901 ] )
+    subtractMean = np.load("..\\rgb_mean.npy")
+    pca_eigenvectors = np.load("..\\eigenvectors.npy")
+    pca_eigenvalues = np.load("..\\eigenvalues.npy")
 
     #dataGen = dg_v1.prepDataGen(target_size = target_size, batch_size = 64 )
-    dataGen = as_v3.AugSequence ( target_size=target_size, crop_range=crop_range, allow_hor_flip=True, batch_size=128, subtractMean=subtractMean, datasrc=datasrc, test=False )
+    dataGen = as_v4.AugSequence ( target_size=target_size, crop_range=crop_range, allow_hor_flip=True, batch_size=128, \
+        subtractMean=subtractMean, pca_eigenvectors=pca_eigenvectors, pca_eigenvalues=pca_eigenvalues, \
+        datasrc=datasrc, test=False )
 
     if model is None:
         input_shape = (target_size, target_size, 3)

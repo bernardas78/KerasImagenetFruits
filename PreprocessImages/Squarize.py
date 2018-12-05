@@ -52,6 +52,7 @@ for _,dirs,files in os.walk(picDir):
                     else:
                         im = im.crop(( 0, int((h-w)/2), w, int((h-w)/2)+w ))
 
+                    im = im.resize ( (255,255) )
                     squareFileName = os.path.join (squareKeywordDir, file)
                     im.save( squareFileName )
                 except:

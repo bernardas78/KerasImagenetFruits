@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>PCA distortion</title>
+</head>
+<body>
+
+    <h1 id="pca-distortion">PCA distortion</h1>
+<h2 id="why">Why</h2>
+<p>As a means of regularization (to prevent overfitting), instead of using original images while training -
+distort them in every epoch by different (random) amount.</p>
+<h2 id="technique-used">Technique used:</h2>
+<ol>
+<li>PCA was performed on entire training set R, G, B values</li>
+<li>Resulting was 3 Principal components: eigenvectors (3-dimensional PC[1:3]) and eigenvalues (scalar - Lambda[1:3])</li>
+<li>Using each of 3 principal components separately PC(i):
+<ol type="a">
+<li>Alpha chosen of different values (-1.0, -0.3, ... 1.0)</li>
+<li>RGB += PC(i) * Lambda(i) * Alpha</li>
+</ol>
+</li>
+</ol>
+<h2 id="bellow-are-samples-of-image-distortion">Bellow are samples of image distortion:</h2>
+<ol>
+<li>Top/Left contains original image</li>
+<li>Row headers contain Lambda (eigenvalues) of chosen Principal Component</li>
+<li>Column headers contain Alpha values (distortion coefficient)</li>
+<li>Cells contain distorted images</li>
+</ol>
+<p><img src="Visuals/PcaDistort/0.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/1.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/2.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/3.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/4.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/5.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/6.jpeg" alt="alt text" />
+<img src="Visuals/PcaDistort/7.jpeg" alt="alt text" /></p>
+
+
+</body>
+</html>

@@ -10,8 +10,8 @@ from keras.models import load_model
 
 from DataGen import AugSequence as as_v1
 from DataGen import AugSequence_v2_Threaded as as_v2
-
 from DataGen import AugSequence_v3_randomcrops as as_v3
+from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
 
@@ -61,6 +61,7 @@ from Training import Train_v49_noDrouput as t_v49
 from Training import Train_v50_experimetalDropout as t_v50
 from Training import Train_v51_optimumDropout as t_v51
 from Training import Train_v52_centeredInput as t_v52
+from Training import Train_v53_PcaDistortion as t_v53
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -73,7 +74,7 @@ def re():
     importlib.reload(as_v1)
     importlib.reload(as_v2)
     importlib.reload(as_v3)
-
+    importlib.reload(as_v4)
     importlib.reload(dg_v1)
     importlib.reload(dg_v2)
 
@@ -123,6 +124,7 @@ def re():
     importlib.reload(t_v50)
     importlib.reload(t_v51)
     importlib.reload(t_v52)
+    importlib.reload(t_v53)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

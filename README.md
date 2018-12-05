@@ -23,6 +23,7 @@
 - Deep learning
 - Keras with Tensorflow backend
 - Very simple Convolutional Neural Network
+- To increase training set, PCA distortion was used. [More...](PcaDistort.md)
 
 ## Results received
 - 38.2% top-1 and 80.4% top-5 accuracy (on validation set). 
