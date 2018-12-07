@@ -8,7 +8,7 @@ class AugSequence (keras.utils.Sequence):
 
     def __init__(self, crop_range=1, allow_hor_flip=True, target_size=224, batch_size=32, \
         subtractMean = 0.0, pca_eigenvectors = None, pca_eigenvalues = None, \
-        test=False, datasrc="selfCreatedGoogle", debug=False): 
+        test=False, shuffle=True, datasrc="selfCreatedGoogle", debug=False): 
        
         self.target_size = target_size
         self.crop_range = crop_range
@@ -36,6 +36,11 @@ class AugSequence (keras.utils.Sequence):
                 data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_50"
             else:
                 data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_50"
+        elif datasrc == "ilsvrc14_100classes":
+            if test:
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_val_unp_100"
+            else:
+                data_dir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_100"
         else:
             raise Exception('AugSequence: unknown datasrc')
 
@@ -47,6 +52,7 @@ class AugSequence (keras.utils.Sequence):
             data_dir,
             target_size=(size_uncropped, size_uncropped),
             batch_size=batch_size,
+            shuffle=shuffle,
             class_mode='categorical')
 
         #store length for faster retrieval of length
@@ -84,8 +90,8 @@ class AugSequence (keras.utils.Sequence):
             # pca_eigenvectors is a 3x3 matrix; rows=R,G,B values; columns=Principal components orders by desc eigenvalues
             # pca_eigenvalues is a 3-array
 
-            # for each principal component - random multiplier with std=0.1 and mean=0
-            random_alpha = np.random.randn ( 3 ) * 3.0
+            # for each principal component - random multiplier with std=1.0 and mean=0
+            random_alpha = np.random.randn ( 3 ) * 1.0
 
             # Distort input values
             X += np.dot ( self.pca_eigenvectors, random_alpha * self.pca_eigenvalues)
@@ -107,3 +113,6 @@ class AugSequence (keras.utils.Sequence):
     def __del__(self):
         if self.debug:
             print ("AugSequence.py, __del__")
+
+    def dataGen(self):
+        return self.data_generator

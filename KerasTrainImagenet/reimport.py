@@ -62,6 +62,7 @@ from Training import Train_v50_experimetalDropout as t_v50
 from Training import Train_v51_optimumDropout as t_v51
 from Training import Train_v52_centeredInput as t_v52
 from Training import Train_v53_PcaDistortion as t_v53
+from Training import Train_v54_50to100classes as t_v54
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -125,6 +126,7 @@ def re():
     importlib.reload(t_v51)
     importlib.reload(t_v52)
     importlib.reload(t_v53)
+    importlib.reload(t_v54)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

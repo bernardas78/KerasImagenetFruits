@@ -52,6 +52,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v54_50to100classes.py" />
     <Compile Include="Training\Train_v53_PcaDistortion.py" />
     <Compile Include="Training\Train_v52_centeredInput.py" />
     <Compile Include="Training\Train_v51_optimumDropout.py" />
@@ -109,6 +110,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPred.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="visualPredHeatmap.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
