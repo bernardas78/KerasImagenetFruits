@@ -24,6 +24,7 @@ from Model import Model_v6_4cnn as m_v6
 from Model import Model_v7_5cnn as m_v7
 from Model import Model_v8_sgd as m_v8
 from Model import Model_v9_noDropout as m_v9
+from Model import Model_v10_vgg as m_v10
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -63,6 +64,7 @@ from Training import Train_v51_optimumDropout as t_v51
 from Training import Train_v52_centeredInput as t_v52
 from Training import Train_v53_PcaDistortion as t_v53
 from Training import Train_v54_50to100classes as t_v54
+from Training import Train_v55_vggSmallFilters as t_v55
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -88,6 +90,7 @@ def re():
     importlib.reload(m_v7)
     importlib.reload(m_v8)
     importlib.reload(m_v9)
+    importlib.reload(m_v10)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -127,6 +130,7 @@ def re():
     importlib.reload(t_v52)
     importlib.reload(t_v53)
     importlib.reload(t_v54)
+    importlib.reload(t_v55)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

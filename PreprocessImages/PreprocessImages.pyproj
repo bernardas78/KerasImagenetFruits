@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="crop_bbox.py" />
     <Compile Include="Squarize.py" />
   </ItemGroup>
   <PropertyGroup>
