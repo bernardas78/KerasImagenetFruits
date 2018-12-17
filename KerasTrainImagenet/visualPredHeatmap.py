@@ -1,4 +1,4 @@
-# Draws a heatmap of prodicted classes. Tested on 50 classes
+# Draws a confusion matrix of predicted vs. actual classes. Tested on 50 classes
 #   Have a model trained model loaded or load: model = load_model("D:\\ILSVRC14\\models\\model_v53.h5") 
 #
 # To run:

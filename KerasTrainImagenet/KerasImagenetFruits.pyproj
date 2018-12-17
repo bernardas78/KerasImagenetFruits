@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataGen\AugSequence_v5_vggPreprocess.py" />
     <Compile Include="DataGen\AugSequence_v4_PcaDistortion.py" />
     <Compile Include="DataGen\AugSequence_v3_randomcrops.py" />
     <Compile Include="DataGen\AugSequence.py" />
@@ -53,6 +54,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_debugFit.py" />
+    <Compile Include="Training\Train_v57_vggPreTrained.py" />
+    <Compile Include="Training\Train_v56_boundingBoxes.py" />
     <Compile Include="Training\Train_v55_vggSmallFilters.py" />
     <Compile Include="Training\Train_v54_50to100classes.py" />
     <Compile Include="Training\Train_v53_PcaDistortion.py" />
@@ -104,6 +107,7 @@
     <Compile Include="Training\Train_v7_8x8shifts_dropout.py" />
     <Compile Include="Training\Train_v6_12x12shifts.py" />
     <Compile Include="Training\Train_v5_8x8shifts.py" />
+    <Compile Include="vgg-16_keras.py" />
     <Compile Include="visualNthLayer.py" />
     <Compile Include="visual2ndLayer.py">
       <SubType>Code</SubType>
@@ -112,6 +116,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPred.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="visualPredConfidence.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPredHeatmap.py">

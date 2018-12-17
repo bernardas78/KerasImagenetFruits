@@ -17,8 +17,10 @@ import time
 #angleCntPerCircle = 8   # Number of eqyal angles to divide a circle to for each image
 #edge = 50               # Edge length of a compressed image
 
-picDir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_100.NonSquare"
-squarePicDir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_100"
+#picDir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_100.NonSquare"
+#squarePicDir = "C:\\ILSVRC14\\ILSVRC2012_img_train_unp_100"
+picDir = "D:\\ILSVRC14\\ILSVRC2012_bbox"
+squarePicDir = "D:\ILSVRC14\ILSVRC2012_bbox.Square255"
 ind=0
 
 dirNames = []

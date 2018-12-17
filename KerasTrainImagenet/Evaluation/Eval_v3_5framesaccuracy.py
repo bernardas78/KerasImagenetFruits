@@ -5,9 +5,10 @@ from DataGen import DataGen_v1_150x150_1frame as dg_v1
 import math
 import numpy as np
 #from DataGen import AugSequence_v3_randomcrops as as_v3
-from DataGen import AugSequence_v4_PcaDistortion as as_v4
+#from DataGen import AugSequence_v4_PcaDistortion as as_v4
+from DataGen import AugSequence_v5_vggPreprocess as as_v5
 
-def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoogle", test = False ):
+def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoogle", preprocess="div255", test = False ):
     # Evaluates a given model's top 1-5 accuracy rate; prints result on screen
     #
     #   model: trained Keras model
@@ -18,7 +19,8 @@ def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoo
 
     #trainDataGen = dg_v1.prepDataGen( target_size = extended_target_size, datasrc = datasrc, test = test )
     batch_size=128
-    trainDataGen = as_v4.AugSequence ( target_size=extended_target_size, crop_range=1, allow_hor_flip=False, batch_size=batch_size, subtractMean=subtractMean, datasrc=datasrc, test=test )
+    trainDataGen = as_v5.AugSequence ( target_size=extended_target_size, crop_range=1, allow_hor_flip=False, batch_size=batch_size, \
+        subtractMean=subtractMean, datasrc=datasrc, preprocess=preprocess, test=test )
 
     # top 1,..5 error rates
     top_accuracy = np.zeros(5)
@@ -66,8 +68,8 @@ def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoo
 
         cnt_m += m
 
-        #if ( cnt_m / trainDataGen.batch_size % 10 ) == 0:
-        #    print ( "cnt_m, top_accuracy", str(cnt_m), top_accuracy )
+        if ( cnt_m / batch_size % 10 ) == 0:
+            print ( "cnt_m, top_accuracy", str(cnt_m), top_accuracy )
 
         # ImageDataGenerator will loop forever
         if math.ceil ( cnt_m / batch_size ) >= len(trainDataGen):

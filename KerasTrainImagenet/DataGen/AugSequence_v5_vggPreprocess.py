@@ -3,11 +3,12 @@ import keras
 from keras.preprocessing.image import ImageDataGenerator
 from PIL import ImageFile
 import time
+from keras.applications.vgg16 import preprocess_input
 
 class AugSequence (keras.utils.Sequence):
 
     def __init__(self, crop_range=1, allow_hor_flip=True, target_size=224, batch_size=32, \
-        subtractMean = 0.0, pca_eigenvectors = None, pca_eigenvalues = None, \
+        subtractMean = 0.0, pca_eigenvectors = None, pca_eigenvalues = None, preprocess="div255", \
         test=False, shuffle=True, datasrc="selfCreatedGoogle", debug=False): 
        
         self.target_size = target_size
@@ -54,8 +55,13 @@ class AugSequence (keras.utils.Sequence):
         else:
             raise Exception('AugSequence: unknown datasrc')
 
-        datagen = ImageDataGenerator ( rescale=1./255 )
-        #datagen = ImageDataGenerator (  )
+        if preprocess=="div255":
+            datagen = ImageDataGenerator ( rescale=1./255 )
+        elif preprocess=="vgg":
+            datagen = ImageDataGenerator ( preprocessing_function=preprocess_input )
+        else:
+            raise Exception('AugSequence: unknown preprocess parameter')
+            
         
         size_uncropped = target_size + crop_range - 1
 

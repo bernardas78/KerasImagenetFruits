@@ -91,11 +91,14 @@ def prepModel( input_shape=(150,150,3), \
 
     optimizer = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 
-    def top_5(y_true, y_pred):
-        return top_k_categorical_accuracy(y_true, y_pred, k=5)
+    #def top_5(y_true, y_pred):
+    #    return top_k_categorical_accuracy(y_true, y_pred, k=5)
 
     model.compile(loss='categorical_crossentropy',
               optimizer=optimizer,
               metrics=['accuracy', top_5])
 
     return model
+
+def top_5(y_true, y_pred):
+    return top_k_categorical_accuracy(y_true, y_pred, k=5)
