@@ -40,6 +40,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Model_v10_vgg.py" />
+    <Compile Include="Model\Model_v11_pretVggPlusSoftmax.py" />
     <Compile Include="Model\Model_v9_noDropout.py" />
     <Compile Include="Model\Model_v8_sgd.py" />
     <Compile Include="Model\Model_v7_5cnn.py" />
@@ -103,6 +104,8 @@
     <Compile Include="reimport.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Training\Train_v58_preProcessFromVgg.py" />
+    <Compile Include="Training\Train_v59_vggCutLastLayer.py" />
     <Compile Include="Training\Train_v8_12x12shifts_dropout.py" />
     <Compile Include="Training\Train_v7_8x8shifts_dropout.py" />
     <Compile Include="Training\Train_v6_12x12shifts.py" />
