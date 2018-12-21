@@ -77,6 +77,7 @@ from Evaluation import Eval_v3_5framesaccuracy as e_v3
 from Evaluation import Eval_v4_10framesaccuracy as e_v4
 
 import visualPred as vp
+import visualPredImagenet as vpi
 
 def re():
     importlib.reload(as_v1)
@@ -149,3 +150,4 @@ def re():
     importlib.reload(e_v4)
     
     importlib.reload(vp)
+    importlib.reload(vpi)

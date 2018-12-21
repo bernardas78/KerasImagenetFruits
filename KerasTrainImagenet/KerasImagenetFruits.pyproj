@@ -127,6 +127,7 @@
     <Compile Include="visualPredHeatmap.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="visualPredImagenet.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataGen\" />

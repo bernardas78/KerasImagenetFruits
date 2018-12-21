@@ -1,22 +1,29 @@
 from keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from Model import Model_v11_pretVggPlusSoftmax as m_v11
+from DataGen import AugSequence_v5_vggPreprocess as as_v5
 
 # Run:
-#   visualCache = vp.visualInit() #to initialize plot
-#   vp.visualShow(visualCache)
+#   exec(open("reimport.py").read())
+#   visualCache = vpi.visualInit() #to initialize plot
+#   vpi.visualShow(visualCache)
 
 def visualInit():
     # Visualizes pictures randomly; waits for key-pres between visualizations
     #
-    model = load_model ("C:\\labs\models\\model_v22.h5")
-    #model = load_model ("D:\\ILSVRC14\\models\\model_v59.h5", custom_objects={'top_5': m_v11.top_5)
+    #model = load_model ("C:\\labs\models\\model_v22.h5")
+    model = load_model ("D:\\ILSVRC14\\models\\model_v59.h5", custom_objects={'top_5': m_v11.top_5})
 
-    dataGen = dg_v1.prepDataGen()
-
+    #dataGen = dg_v1.prepDataGen()
+    target_size = 224
+    datasrc = "ilsvrc14_100boundingBoxes"
+    dataGen = as_v5.AugSequence ( target_size=target_size, crop_range=1, allow_hor_flip=False, batch_size=48, \
+        #subtractMean=subtractMean, 
+        preprocess="vgg", datasrc=datasrc, shuffle=False, test=True )
     # New plot
     rows=8
     columns=4
@@ -76,6 +83,22 @@ def visualInit():
 
     plt.show()
 
+    # Model's classes are subset of 3K+ global Imagenet categories sorted by name
+    subset_class_names = np.array(list(dataGen.dataGen().class_indices.keys()))
+
+    # Load category names
+    df = pd.read_excel("D:\\ILSVRC14\\ValidationFiles.xlsx", header=None)
+
+    # Directory names n0000000 format
+    class_dirs_full = np.copy ( df[1].astype(str) ).astype(str)
+    
+    # Human readable class names (remove secondary class names - after comma)
+    class_names_full = np.copy ( df[2].astype(str) ).astype(str)
+    class_names_full_shortened = [lst[0] for lst in np.core.defchararray.rsplit (class_names_full, ',')]
+
+    # Model's set of human-readable class names
+    class_names = [ class_names_full_shortened [ np.where (subset_class_name==class_dirs_full)[0][0] ] for subset_class_name in subset_class_names] 
+
     cache = {}
     cache ["ims"] = ims
     cache ["ims_data"] = ims_data
@@ -84,6 +107,7 @@ def visualInit():
     cache ["columns"] = columns
     cache ["dataGen"] = dataGen
     cache ["model"] = model
+    cache ["class_names"] = np.array ( class_names )
 
     return cache
 
@@ -97,8 +121,7 @@ def visualShow(cache):
     columns = cache ["columns"]
     dataGen = cache ["dataGen"]
     model = cache ["model"]
-
-    class_names = np.array(list(dataGen.class_indices.keys()))
+    class_names = cache ["class_names"]
 
     for X, y in dataGen:
 
@@ -115,7 +138,13 @@ def visualShow(cache):
         for i in range(rows*columns):
             # Show image on the left
             im = ims [ i ]
-            im.set_data( X[i] )
+
+            # to "un-vgg-preprocess_input - add mean RGB"
+            #X[i] += [123.68, 116.779, 103.939]
+            X_disp = ( np.flip(X[i], axis=2) + [123.68, 116.779, 103.939]).astype(int)
+            #print ("X_disp.shape, X_disp.max/min:", X_disp.shape, np.max(X_disp), np.min(X_disp))
+            
+            im.set_data( X_disp  )
 
             #Show actual label and predictions on the right
             subplot_lbl = ims_data [ "lbl_sub."+str(i) ]
@@ -152,7 +181,7 @@ def visualShow(cache):
 
         
         fig.canvas.flush_events()
-        plt.savefig("C:\\labs\\KerasImagenetFruits\\Visuals\\top5_"+str(dataGen.batch_index)+".jpg")
+        plt.savefig("C:\\labs\\KerasImagenetFruits\\Visuals\\PredConfidence\\top5_"+str(dataGen.dataGen().batch_index)+".jpg")
         break
 
 def visualClose():
