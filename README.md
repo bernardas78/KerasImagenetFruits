@@ -33,7 +33,7 @@
 - 5 top predictions with probabilities presented
 - Green - true label (all 5 orange indicate correct label not among to 5 guesses)
 - True label at the bottom of each legend
-![alt text](Visuals/top5_1.jpg "")
+![alt text](Visuals/PredConfidence/top5_1.jpg "")
 [More...](TopPredictions.md)
 
 
