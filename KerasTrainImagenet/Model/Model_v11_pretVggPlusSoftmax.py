@@ -12,7 +12,7 @@ from keras.optimizers import SGD
 from keras.metrics import top_k_categorical_accuracy
 from keras.applications.vgg16 import VGG16
 
-def prepModel( Softmax_size = 100 ) :
+def prepModel( train_d1=False, train_d2=False, Softmax_size = 100 ) :
 
     # Load pretrained model - except the last softmax layer
     base_model = VGG16(  )
@@ -22,14 +22,20 @@ def prepModel( Softmax_size = 100 ) :
 
    
     # Add a softmax layer with 100 classes
-    predictions = Dense( Softmax_size , activation='softmax')( base_model.output )
+    predictions = Dense( Softmax_size , activation='softmax')( base_model.layers[-1].output )
 
     # this is the model we will train
     model = Model( inputs=base_model.input, outputs=predictions )
 
-    # first: train only the top layers (which were randomly initialized)
+    # first: train only the top layers 
     for layer in base_model.layers:
         layer.trainable = False
+
+    d2_layer_index = len(base_model.layers)-1
+    base_model.layers [d2_layer_index].trainable = train_d2
+
+    d1_layer_index = len(base_model.layers)-2
+    base_model.layers [d1_layer_index].trainable = train_d1
  
     optimizer = SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 

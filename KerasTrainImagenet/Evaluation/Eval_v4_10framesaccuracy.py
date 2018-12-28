@@ -8,7 +8,8 @@ import numpy as np
 #from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from DataGen import AugSequence_v5_vggPreprocess as as_v5
 
-def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoogle", preprocess="div255", test = False, returnYhatY = False ):
+def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoogle", preprocess="div255", 
+          batch_size=128, shuffle=True, test = False, returnYhatY = False ):
     # Evaluates a given model's top 1-5 accuracy rate; prints result on screen
     #
     #   model: trained Keras model
@@ -17,9 +18,9 @@ def eval ( model, target_size = 150, subtractMean=0.0, datasrc = "selfCreatedGoo
     # to use 4 corners + center for evaluation, extend the image by 15%; later use crops of target size
     extended_target_size = int ( target_size * 1.15 )
 
-    batch_size=128
+    
     dataGen = as_v5.AugSequence ( target_size=extended_target_size, crop_range=1, allow_hor_flip=False, \
-        batch_size=batch_size, subtractMean=subtractMean, datasrc=datasrc, preprocess=preprocess, test=test )
+        batch_size=batch_size, subtractMean=subtractMean, datasrc=datasrc, preprocess=preprocess, test=test, shuffle=shuffle )
 
     # top 1,..5 error rates
     top_accuracy = np.zeros(5)

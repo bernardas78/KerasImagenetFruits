@@ -26,8 +26,9 @@
 - To increase training set, PCA distortion was used. [More...](PcaDistort.md)
 
 ## Results received
-- 38.2% top-1 and 80.4% top-5 accuracy (on validation set). 
-- That means 80.4% of the times correct label would be in list of reduced items if 5 are shown (as in pseudo-screen above)
+- 77.8% top-1 and 94.7% top-5 accuracy (on validation set). 
+- That means 94.7% of the times correct label would be in list of reduced items if 5 are shown (as in pseudo-screen above)
+- Optionally, to improve accuracy consider using [confidence thresholds](ConfidenceThreshold.md)
 
 ## Samples: 
 - 5 top predictions with probabilities presented
