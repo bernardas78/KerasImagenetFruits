@@ -1,13 +1,13 @@
 ## What is confidence
 - A softmax function outputs probabilities of a picture being each class. <br>
 - The higher the output probability - the higher confidence level of a picture being that class
-- Sample picture bellow shows high and low confidence levels
+- Sample picture bellow shows high and low confidence levels<br>
 ![alt text](Visuals/ConfidenceIntervals/HighLowConfidence.png "")
 
 ## Why confidence threshold?
 - Hypothetically, by eliminating low-confidence predictions, accuracy could improve
 - In a self-checkout, eliminated predictions would not show a reduced tree (i.e. top k items). A customer would see a full selection tree
-- Bellow graph illustrates how eliminating low-confidence predictions improve accuracy
+- Bellow graph illustrates how eliminating low-confidence predictions improves accuracy
 
 ![alt text](Visuals/ConfidenceIntervals/ConfThreshold300.jpg "")
 
