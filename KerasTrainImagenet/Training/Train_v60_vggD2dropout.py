@@ -1,15 +1,13 @@
 # Trains a model for 4 epochs: 12x12 shifts. Size of image trainable 224x224. with shifts of 12x12, target size is 235
 #
 # To run:
-#   model = t_v59.trainModel(epochs=50)
-#   model = t_v59.trainModel(epochs=50, train_d2=True)
-#   model = t_v59.trainModel(epochs=50, train_d1=True, train_d2=True)
+#   model = t_v60.trainModel(epochs=50)
 
 #from DataGen import AugSequence_v3_randomcrops as as_v3
 #from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from DataGen import AugSequence_v5_vggPreprocess as as_v5
 #from Model import Model_v8_sgd as m_v8
-from Model import Model_v11_pretVggPlusSoftmax as m_v11
+from Model import Model_v12_pretVggMinusDense as m_v12
 #import time
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -17,7 +15,7 @@ from Evaluation import Eval_v4_10framesaccuracy as e_v4
 from keras.callbacks import EarlyStopping
 import numpy as np
 
-def trainModel( epochs = 1, train_d1=False, train_d2=False):
+def trainModel( epochs = 1):
     # Trains a model
     #   model = optional parameter; creates new if not passed; otherwise keeps training
     #   epochs - number of max epochs to train (subject to early stopping)
@@ -43,7 +41,7 @@ def trainModel( epochs = 1, train_d1=False, train_d2=False):
         #subtractMean=subtractMean, pca_eigenvectors=pca_eigenvectors, pca_eigenvalues=pca_eigenvalues, \
         preprocess="vgg", datasrc=datasrc, test=False )
 
-    model = m_v11.prepModel (train_d1=train_d1, train_d2=train_d2, Softmax_size=100)
+    model = m_v12.prepModel (D2_dropout=0.5, Softmax_size=100)
 
     #prepare a validation data generator, used for early stopping
     #vldDataGen = dg_v1.prepDataGen( target_size=target_size, test=True, batch_size=128, datasrc=datasrc )

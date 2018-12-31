@@ -23,5 +23,5 @@
 
 ## Conclusion
 - Proved that putting a confidence threshold improves accuracy
-- Use some confidence level as a tradeoff between accuracy and how many customers you choose to serve
+- Use minimum confidence threshold as a tradeoff between accuracy and how many customers you choose to serve
 - The above graph only shows top-1 confidence and accuracy dependency. If threshold is not passed for a top 1, then one could check confidence of top-2, ... top-5 and use similar logic as described above to show (or not) top-k items

@@ -27,6 +27,7 @@ from Model import Model_v8_sgd as m_v8
 from Model import Model_v9_noDropout as m_v9
 from Model import Model_v10_vgg as m_v10
 from Model import Model_v11_pretVggPlusSoftmax as m_v11
+from Model import Model_v12_pretVggMinusDense as m_v12
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -71,6 +72,8 @@ from Training import Train_v56_boundingBoxes as t_v56
 from Training import Train_v57_vggPreTrained as t_v57
 from Training import Train_v58_preProcessFromVgg as t_v58
 from Training import Train_v59_vggCutLastLayer as t_v59
+from Training import Train_v60_vggD2dropout as t_v60
+
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -99,6 +102,7 @@ def re():
     importlib.reload(m_v9)
     importlib.reload(m_v10)
     importlib.reload(m_v11)
+    importlib.reload(m_v12)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -143,6 +147,7 @@ def re():
     importlib.reload(t_v57)
     importlib.reload(t_v58)
     importlib.reload(t_v59)
+    importlib.reload(t_v60)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
