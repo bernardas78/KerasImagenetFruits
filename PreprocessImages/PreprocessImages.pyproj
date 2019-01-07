@@ -23,8 +23,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="voc\voc.py" />
     <Compile Include="crop_bbox.py" />
     <Compile Include="Squarize.py" />
+    <Compile Include="bboxesToListToFile.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="voc\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

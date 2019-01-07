@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataGen\AugSequence_v6_detOutput.py" />
     <Compile Include="DataGen\AugSequence_v5_vggPreprocess.py" />
     <Compile Include="DataGen\AugSequence_v4_PcaDistortion.py" />
     <Compile Include="DataGen\AugSequence_v3_randomcrops.py" />
