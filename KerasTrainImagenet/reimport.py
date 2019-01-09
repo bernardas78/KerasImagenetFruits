@@ -13,6 +13,7 @@ from DataGen import AugSequence_v2_Threaded as as_v2
 from DataGen import AugSequence_v3_randomcrops as as_v3
 from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from DataGen import AugSequence_v5_vggPreprocess as as_v5
+from DataGen import AugSequence_v6_detOutput as as_v6
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
 
@@ -88,6 +89,7 @@ def re():
     importlib.reload(as_v3)
     importlib.reload(as_v4)
     importlib.reload(as_v5)
+    importlib.reload(as_v6)
     importlib.reload(dg_v1)
     importlib.reload(dg_v2)
 
