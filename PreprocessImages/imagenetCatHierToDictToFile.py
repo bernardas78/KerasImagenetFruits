@@ -1,6 +1,6 @@
 # Make 2 dictionarries:
-#   Category name:description, for all imagenet categories (815)
 #   DET train cat: DET vld cat (vld categories are higher or same level as train categories)
+#   DET det_cat_name:[det_cat_ind, description] (used for encoding labels)
 # To run:
 #   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
@@ -33,7 +33,6 @@ cat_names = [cat[1][0] for cat in cats['synsets'][0]]
 cat_desc = {}
 for cat in cats['synsets'][0]:
     cat_desc [cat[1][0]] = [cat[2][0]]
-#cat_indices =  [cat[0][0][0] for cat in cats['synsets'][0]]
 
 # fill dictionary child:parent
 for single_cat in cats['synsets'][0]:
@@ -69,7 +68,16 @@ print ("Loaded DET categories")
 os.remove(cache_name)
 
 # Detection categories only (count 200)
-det_cats = ann[1].keys()
+#det_cats = ann[1].keys()
+
+# Dictionary of det_cat_name:[det_cat_ind, description]
+det_cats = {}
+det_cat_index = 0
+for det_cat_name in ann[1].keys():
+    det_cats [det_cat_name] = [ det_cat_index, cat_desc[det_cat_name][0] ]
+    det_cat_index +=1
+
+
 
 det_cat_hier = {} 
 
@@ -80,7 +88,7 @@ for lower_cat in cat_names:
     candidate_parent = lower_cat
     #print ("Looking for parent of ", cat_desc [lower_cat])
     while not parent_found:
-        if candidate_parent in det_cats:
+        if candidate_parent in det_cats.keys():
             parent_found=True
             det_cat_hier [lower_cat] = candidate_parent
             #print ("Found parent of ", cat_desc [lower_cat], " is ", cat_desc [candidate_parent])
@@ -95,11 +103,11 @@ for lower_cat in cat_names:
 print  ("DET CHALLENGE SUBCATEGORIES:CATEGORIES")
 for key in det_cat_hier.keys():
     print (cat_desc[key],":",cat_desc[det_cat_hier[key]])
-print ("total sub-cats, cats:", len(det_cat_hier), len(det_cats))
+print ("total sub-cats, cats:", len(det_cat_hier), len(det_cats.keys()))
 
 print ( "Save category descriptions to a single file" )
 with open(det_cat_desc_file, 'wb') as file_desc:
-    pickle.dump(cat_desc, file_desc)
+    pickle.dump(det_cats, file_desc)
 
 print ( "Save det category hierarchy to a single file" )
 with open(det_cat_hier_file, 'wb') as file_hier:
@@ -107,5 +115,5 @@ with open(det_cat_hier_file, 'wb') as file_hier:
 
 # To load:
 #   import pickle
-#   cat_desc = pickle.load( open('d:\ILSVRC14\det_catdesc.obj', 'rb') )
+#   det_cats = pickle.load( open('d:\ILSVRC14\det_catdesc.obj', 'rb') )
 #   det_cat_hier = pickle.load( open('d:\ILSVRC14\det_cathier.obj', 'rb') )

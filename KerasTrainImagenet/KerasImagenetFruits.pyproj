@@ -107,6 +107,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Training\Train_v58_preProcessFromVgg.py" />
+    <Compile Include="Training\Train_v61_customDataGen.py" />
     <Compile Include="Training\Train_v60_vggD2dropout.py" />
     <Compile Include="Training\Train_v59_vggCutLastLayer.py" />
     <Compile Include="Training\Train_v8_12x12shifts_dropout.py" />

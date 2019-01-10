@@ -3,7 +3,7 @@
 #   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
 #   Set train or validation  
-Test = True
+Test = False
 #   exec(open("bboxesToListToFile.py").read())
 
 
@@ -30,7 +30,7 @@ else:
 #bboxes = []
 bboxes = {}
 
-def getSingleDirAnnotations (bboxDir, picDir, bboxes):
+def getSingleDirAnnotations (bboxDir, picDir, subDir, bboxes):
 
     # Initialize a list to accumulate bounding boxes for all files
     #bboxes = []
@@ -41,7 +41,8 @@ def getSingleDirAnnotations (bboxDir, picDir, bboxes):
 
     # Combine bboxes from each file into a single list
     for singlefile in ann[0]:
-        imgfilename = "\\".join( singlefile['filename'].split("\\")[ -2: ]) + ".JPEG"
+        filenamenopath = singlefile['filename'].split("\\")[ -1: ][0]
+        imgfilename = subDir + filenamenopath + ".JPEG"
         #bboxes += [ (imgfilename, obj['name'], obj['xmin'], obj['xmax'], obj['ymin'], obj['ymax'] ) for obj in singlefile['object']]
         bboxes [imgfilename] = [ ( obj['name'], obj['xmin'], obj['xmax'], obj['ymin'], obj['ymax'] ) for obj in singlefile['object']]
 
@@ -58,7 +59,7 @@ for _,subdirs,files in os.walk(bboxDir):
 
         now=time.time()
         #bboxes += getSingleDirAnnotations ( ''.join( [ bboxDir,subdir,"\\" ] ), ''.join( [ picDir,subdir,"\\" ] ) ) 
-        getSingleDirAnnotations ( ''.join( [ bboxDir,subdir,"\\" ] ), ''.join( [ picDir,subdir,"\\" ] ), bboxes ) 
+        getSingleDirAnnotations ( ''.join( [ bboxDir,subdir,"\\" ] ), ''.join( [ picDir,subdir,"\\" ] ), subdir+"\\", bboxes ) 
         print ("parse_voc_annotation for ", subdir, " took %.2f" % (time.time()-now) )
 
     # Validation bounding boxes in root dir
@@ -66,7 +67,7 @@ for _,subdirs,files in os.walk(bboxDir):
         print ("PROCESSING INDIVIDUAL FILES", len(subdirs), len(files))
         now=time.time()
         #bboxes = getSingleDirAnnotations ( bboxDir, picDir )
-        getSingleDirAnnotations ( bboxDir, picDir, bboxes )
+        getSingleDirAnnotations ( bboxDir, picDir, "", bboxes )
         print ("parse_voc_annotation for root took %.2f" % (time.time()-now) )
 
     # Without this break it goes into subdirs
@@ -78,5 +79,5 @@ with open(detBoxesFile, 'wb') as file_bboxes:
 
 # To load:
 #   import pickle
-#   bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_train.obj", 'rb') )
-#   bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_val.obj", 'rb') )
+#   train_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_train.obj", 'rb') )
+#   val_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_val.obj", 'rb') )
