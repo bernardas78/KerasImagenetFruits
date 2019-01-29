@@ -1,6 +1,10 @@
 # Make 2 dictionarries:
 #   DET train cat: DET vld cat (vld categories are higher or same level as train categories)
 #   DET det_cat_name:[det_cat_ind, description] (used for encoding labels)
+# To load:
+#   import pickle
+#   det_cats = pickle.load( open('d:\ILSVRC14\det_catdesc.obj', 'rb') )
+#   det_cat_hier = pickle.load( open('d:\ILSVRC14\det_cathier.obj', 'rb') )
 # To run:
 #   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
@@ -113,7 +117,3 @@ print ( "Save det category hierarchy to a single file" )
 with open(det_cat_hier_file, 'wb') as file_hier:
     pickle.dump(det_cat_hier, file_hier)
 
-# To load:
-#   import pickle
-#   det_cats = pickle.load( open('d:\ILSVRC14\det_catdesc.obj', 'rb') )
-#   det_cat_hier = pickle.load( open('d:\ILSVRC14\det_cathier.obj', 'rb') )

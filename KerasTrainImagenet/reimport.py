@@ -17,6 +17,8 @@ from DataGen import AugSequence_v6_detOutput as as_v6
 from DataGen import DataGen_v1_150x150_1frame as dg_v1 
 from DataGen import DataGen_v2_150x150_shift_horflip as dg_v2
 
+from DataGen_DET import AugSequence_v7_det_simplest as as_det_v7
+
 from Model import Model_v1_simple1 as m_v1
 from Model import Model_v2_addDropout as m_v2
 from Model import Model_v3_inception as m_v3
@@ -29,6 +31,8 @@ from Model import Model_v9_noDropout as m_v9
 from Model import Model_v10_vgg as m_v10
 from Model import Model_v11_pretVggPlusSoftmax as m_v11
 from Model import Model_v12_pretVggMinusDense as m_v12
+
+from Model_DET import Model_v13_det_simplest as m_det_v13
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -76,6 +80,8 @@ from Training import Train_v59_vggCutLastLayer as t_v59
 from Training import Train_v60_vggD2dropout as t_v60
 from Training import Train_v61_customDataGen as t_v61
 
+from Training_DET import Train_v62_det_simplest as t_det_v62
+
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -94,6 +100,8 @@ def re():
     importlib.reload(dg_v1)
     importlib.reload(dg_v2)
 
+    importlib.reload(as_det_v7)
+
     importlib.reload(m_v1)
     importlib.reload(m_v2)
     importlib.reload(m_v3)
@@ -106,6 +114,8 @@ def re():
     importlib.reload(m_v10)
     importlib.reload(m_v11)
     importlib.reload(m_v12)
+
+    importlib.reload(m_det_v13)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -152,6 +162,8 @@ def re():
     importlib.reload(t_v59)
     importlib.reload(t_v60)
     importlib.reload(t_v61)
+
+    importlib.reload(t_det_v62)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)

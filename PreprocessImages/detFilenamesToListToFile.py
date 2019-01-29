@@ -3,7 +3,7 @@
 #   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
 #   Set train or validation  
-Test = False
+Test = True
 #   exec(open("detFilenamesToListToFile.py").read())
 
 
@@ -14,11 +14,11 @@ import pickle
 
 if Test:
     # Validation pictures
-    picDir = "d:\\ILSVRC14\\ILSVRC2013_DET_val\\"
+    picDir = "d:\\ILSVRC14\\darknet_data\\JPEGImages\\ILSVRC2013_DET_val\\"
     picnamesFile = "d:\\ILSVRC14\\det_img_val.obj"
 else:
     # Train pictures
-    picDir = "d:\\ILSVRC14\\ILSVRC2014_DET_train_unp\\"
+    picDir = "d:\\ILSVRC14\\darknet_data\\JPEGImages\\ILSVRC2014_DET_train_unp\\"
     picnamesFile = "d:\\ILSVRC14\\det_img_train.obj"
 
 

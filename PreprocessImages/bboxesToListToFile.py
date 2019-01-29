@@ -1,4 +1,8 @@
 # Reads bounding boxes (Train|Test) and makes a single file
+# To load:
+#   import pickle
+#   train_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_train.obj", 'rb') )
+#   val_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_val.obj", 'rb') )
 # To run:
 #   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
@@ -18,12 +22,12 @@ exec(open("voc\\voc.py").read())
 if Test:
     # Validation bounding boxes
     bboxDir = "d:\\ILSVRC14\\ILSVRC2013_DET_bbox_val\\"
-    picDir = "d:\\ILSVRC14\\ILSVRC2013_DET_val\\"
+    picDir = "d:\\ILSVRC14\\darknet_data\\JPEGImages\\ILSVRC2013_DET_val\\"
     detBoxesFile = "d:\\ILSVRC14\\det_bboxes_val.obj"
 else:
     # Train bounding boxes
     bboxDir = "d:\\ILSVRC14\\ILSVRC2014_DET_bbox_train\\"
-    picDir = "d:\\ILSVRC14\\ILSVRC2014_DET_train_unp\\"
+    picDir = "d:\\ILSVRC14\\darknet_data\\JPEGImages\\ILSVRC2014_DET_train_unp\\"
     detBoxesFile = "d:\\ILSVRC14\\det_bboxes_train.obj"
 
 
@@ -42,9 +46,10 @@ def getSingleDirAnnotations (bboxDir, picDir, subDir, bboxes):
     # Combine bboxes from each file into a single list
     for singlefile in ann[0]:
         filenamenopath = singlefile['filename'].split("\\")[ -1: ][0]
+        (img_width, img_height) = ( singlefile['width'], singlefile['height'] )
         imgfilename = subDir + filenamenopath + ".JPEG"
         #bboxes += [ (imgfilename, obj['name'], obj['xmin'], obj['xmax'], obj['ymin'], obj['ymax'] ) for obj in singlefile['object']]
-        bboxes [imgfilename] = [ ( obj['name'], obj['xmin'], obj['xmax'], obj['ymin'], obj['ymax'] ) for obj in singlefile['object']]
+        bboxes [imgfilename] = [ ( obj['name'], obj['xmin'], obj['xmax'], obj['ymin'], obj['ymax'], img_width, img_height ) for obj in singlefile['object']]
 
     # remove junk left by parse_voc_annotation() 
     os.remove(cache_name)
@@ -63,12 +68,12 @@ for _,subdirs,files in os.walk(bboxDir):
         print ("parse_voc_annotation for ", subdir, " took %.2f" % (time.time()-now) )
 
     # Validation bounding boxes in root dir
-    if len(subdirs) == 0:
-        print ("PROCESSING INDIVIDUAL FILES", len(subdirs), len(files))
-        now=time.time()
-        #bboxes = getSingleDirAnnotations ( bboxDir, picDir )
-        getSingleDirAnnotations ( bboxDir, picDir, "", bboxes )
-        print ("parse_voc_annotation for root took %.2f" % (time.time()-now) )
+    #if len(subdirs) == 0:
+    #    print ("PROCESSING INDIVIDUAL FILES", len(subdirs), len(files))
+    #    now=time.time()
+    #    #bboxes = getSingleDirAnnotations ( bboxDir, picDir )
+    #    getSingleDirAnnotations ( bboxDir, picDir, "", bboxes )
+    #    print ("parse_voc_annotation for root took %.2f" % (time.time()-now) )
 
     # Without this break it goes into subdirs
     break
@@ -77,7 +82,3 @@ for _,subdirs,files in os.walk(bboxDir):
 with open(detBoxesFile, 'wb') as file_bboxes:
     pickle.dump(bboxes, file_bboxes)
 
-# To load:
-#   import pickle
-#   train_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_train.obj", 'rb') )
-#   val_bboxes = pickle.load( open("d:\\ILSVRC14\\det_bboxes_val.obj", 'rb') )

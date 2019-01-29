@@ -31,6 +31,7 @@
     <Compile Include="DataGen\AugSequence_v2_Threaded.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataGen_DET\AugSequence_v7_det_simplest.py" />
     <Compile Include="diagnostics.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,6 +52,7 @@
     <Compile Include="Model\Model_v4_inception_trainbase.py" />
     <Compile Include="Model\Model_v3_inception.py" />
     <Compile Include="Model\Model_v2_addDropout.py" />
+    <Compile Include="Model_DET\Model_v13_det_simplest.py" />
     <Compile Include="PCA.py" />
     <Compile Include="Training\KeepTraining_v222_less_shifting.py" />
     <Compile Include="Training\LoadAndTrain_v221_longer.py">
@@ -114,6 +116,7 @@
     <Compile Include="Training\Train_v7_8x8shifts_dropout.py" />
     <Compile Include="Training\Train_v6_12x12shifts.py" />
     <Compile Include="Training\Train_v5_8x8shifts.py" />
+    <Compile Include="Training_DET\Train_v62_det_simplest.py" />
     <Compile Include="vgg-16_keras.py" />
     <Compile Include="visualNthLayer.py" />
     <Compile Include="visual2ndLayer.py">
@@ -137,6 +140,9 @@
     <Folder Include="DataGen\" />
     <Folder Include="Model\" />
     <Folder Include="Evaluation\" />
+    <Folder Include="DataGen_DET\" />
+    <Folder Include="Model_DET\" />
+    <Folder Include="Training_DET\" />
     <Folder Include="Training\" />
   </ItemGroup>
   <PropertyGroup>
