@@ -28,6 +28,7 @@ class AugSequence (keras.utils.Sequence):
         self.debug = debug
         self.batch_size = batch_size
         self.subdiv = subdiv
+        self.shuffle = shuffle
 
         #it used to throw file truncated error. bellow makes it tolerant to truncated files
         ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -114,7 +115,10 @@ class AugSequence (keras.utils.Sequence):
 
         #y = np.zeros ( ( len(img_filesnames_batch), len(self.det_cats)+1 ) )
         # Last dimension of y is: Pr(obj), bx, by, bw, bh, P(class_1|obj), ..., P(class_n|obj)
-        y = np.zeros ( ( len(img_filesnames_batch), self.subdiv, self.subdiv, len(self.det_cats)+5 ) )
+        #y = np.zeros ( ( len(img_filesnames_batch), self.subdiv, self.subdiv, len(self.det_cats)+5 ) ) #DET_DEBUG
+        #y = np.zeros ( ( len(img_filesnames_batch), self.subdiv, self.subdiv, 1 ) )
+        y = np.zeros ( ( len(img_filesnames_batch), self.subdiv, self.subdiv, 5 ) )                     #DET_DEBUG
+        #y = np.ones ( ( len(img_filesnames_batch), self.subdiv * self.subdiv * 4 ) ) 
 
         img_counter_in_batch = 0
         tm=np.zeros ((6))
@@ -162,9 +166,14 @@ class AugSequence (keras.utils.Sequence):
                     # Subdivision of the bbox (if center of bbox belongs to subdivision)
                     bbox_x_ind_subdiv = int ( bbox_x_center_abs / subdiv_width )
                     bbox_y_ind_subdiv = int ( bbox_y_center_abs / subdiv_height )
+
                     # Size of bbox (relative to subdivision size)
-                    bbox_width_rel_subdiv = (xmax-xmin) / subdiv_width
-                    bbox_height_rel_subdiv = (ymax-ymin) / subdiv_height
+                    #bbox_width_rel_subdiv = (xmax-xmin) / subdiv_width
+                    #bbox_height_rel_subdiv = (ymax-ymin) / subdiv_height
+                    # TEMPORARY - SO THAT SIGMOID WORKS Size of bbox (relative to image size)
+                    bbox_width_rel_subdiv = (xmax-xmin) / img_width
+                    bbox_height_rel_subdiv = (ymax-ymin) / img_height
+
                     # Center of bbox (relative to subdivision size)
                     bbox_x_center_subdiv = bbox_x_center_abs / subdiv_width - bbox_x_ind_subdiv
                     bbox_y_center_subdiv = bbox_y_center_abs / subdiv_height - bbox_y_ind_subdiv
@@ -176,8 +185,15 @@ class AugSequence (keras.utils.Sequence):
                         y [ img_counter_in_batch, bbox_x_ind_subdiv, bbox_y_ind_subdiv, 0 ] = 1.
                         y [ img_counter_in_batch, bbox_x_ind_subdiv, bbox_y_ind_subdiv, 1:5 ] = \
                             (bbox_x_center_subdiv, bbox_y_center_subdiv, bbox_width_rel_subdiv, bbox_height_rel_subdiv)
-                        class_index = self.det_cats [class_label] [0]
-                        y [ img_counter_in_batch, bbox_x_ind_subdiv, bbox_y_ind_subdiv, class_index+5] = 1.
+                        #DET_DEBUG
+                        #y [ img_counter_in_batch, bbox_x_ind_subdiv*self.subdiv*self.subdiv + bbox_y_ind_subdiv*self.subdiv: \
+                        #   bbox_x_ind_subdiv*self.subdiv*self.subdiv + bbox_y_ind_subdiv*self.subdiv + 4 ] = \
+                        #    (bbox_x_center_subdiv, bbox_y_center_subdiv, bbox_width_rel_subdiv, bbox_height_rel_subdiv)
+                        #y [ img_counter_in_batch, bbox_x_ind_subdiv, bbox_y_ind_subdiv, 0:4 ] = \
+                        #    (bbox_x_center_subdiv, bbox_y_center_subdiv, bbox_width_rel_subdiv, bbox_height_rel_subdiv)
+                        #class_index = self.det_cats [class_label] [0]
+                        #y [ img_counter_in_batch, bbox_x_ind_subdiv, bbox_y_ind_subdiv, class_index+5] = 1.
+                        #DET_DEBUG
                     except:
                         print ("Error creating y:", img_filename, bbox)
             tm[5]+=time.time()-now
@@ -204,9 +220,14 @@ class AugSequence (keras.utils.Sequence):
     def on_epoch_end(self):
         if self.cnter >= len(self):
             self.cnter = 0
+
+        #if self.shuffle:
+        #    np.random.shuffle(self.img_filenames)
+        #    print ("AugSequence_v7.py, Shuffling filenames")
+
         if self.debug:
-            print ("AugSequence_v6.py, End of epoch")
+            print ("AugSequence_v7.py, End of epoch")
 
     def __del__(self):
         if self.debug:
-            print ("AugSequence_v6.py, __del__")
+            print ("AugSequence_v7.py, __del__")

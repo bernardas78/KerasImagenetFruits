@@ -20,6 +20,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KerasImagenetFruits", "Kera
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PreprocessImages", "PreprocessImages\PreprocessImages.pyproj", "{51D9638D-5FA5-47DD-A0F5-92F4CD1D30D3}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Yolo", "Yolo\Yolo.pyproj", "{BCACC3CF-7542-42CD-8DBF-EC40880291F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,8 @@ Global
 		{612DF0E2-096F-416A-B0FC-C478C2DA750B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51D9638D-5FA5-47DD-A0F5-92F4CD1D30D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51D9638D-5FA5-47DD-A0F5-92F4CD1D30D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCACC3CF-7542-42CD-8DBF-EC40880291F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCACC3CF-7542-42CD-8DBF-EC40880291F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

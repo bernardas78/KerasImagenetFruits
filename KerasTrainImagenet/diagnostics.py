@@ -15,7 +15,8 @@ import tensorflow as tf
 import numpy as np
 
 dataGen = dg_v1.prepDataGen ( target_size=224, batch_size=1, datasrc="ilsvrc14_50classes", test=False)
-X, y = dataGen.next()
+for X, y in dataGen:
+    break
 
 
 print ("ACTIVATIONS SUMMARY")
