@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AF6845B-ABE2-471B-89F7-0D2D1D0B9E19}"
 	ProjectSection(SolutionItems) = preProject
 		ConfidenceThreshold.md = ConfidenceThreshold.md
+		DetPredictions.md = DetPredictions.md
 		L1_intermediate.md = L1_intermediate.md
 		L2_intermediate.md = L2_intermediate.md
 		L3_intermediate.md = L3_intermediate.md

@@ -1,3 +1,7 @@
+# Sample from https://towardsdatascience.com/yolo-object-detection-with-opencv-and-python-21e50ac599e9
+#   Trained darknet with my own set of classes
+#   Takes a single image file as input and draws bounding box around it
+
 # To run:
 #   cd C:\labs\KerasImagenetFruits\Yolo
 #   python Yolo.py --image "D:\ILSVRC14\darknet_data\JPEGImages\ILSVRC2014_DET_train_unp\n02062744\n02062744_21.JPEG" --config "C:\labs\darknet_imagenet\yolov3_imagenet.cfg" --weights "C:\labs\darknet\build\darknet\x64\backup\yolov3_imagenet_last.weights" --classes "D:\ILSVRC14\darknet_data\imagenet.names"
