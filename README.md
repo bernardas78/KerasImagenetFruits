@@ -1,5 +1,6 @@
 # Non-barcoded item recognition for self-checkout and regular Point-of-sale
 
+
 ## Problem definition
 - Retailers sell up to 300 non-barcoded items
 - At self-checkout customers are presented with up to 6-layers tree to pick the correct item
@@ -10,6 +11,7 @@
 - Train a Neural Network 
 - Use computer vision and trained NN to recognize the item
 - Present the customer/cashier with reduced number of items
+- Another project spun-off from this one: [Detection of multiple items](Detection.md)
 ![alt text](Visuals/Concept.jpg "")
 
 ## Dataset

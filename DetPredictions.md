@@ -1,8 +1,5 @@
-## Top predictions 
+## Detection predictions 
 
-[//]: # (PS1 command to list files:)
-[//]: # (cd C:\labs\KerasImagenetFruits\Visuals\PredYolo)
-[//]: # ()
 
 ![alt text](Visuals/PredYolo/ILSVRC2012_val_00000001.JPEG "")
 ![alt text](Visuals/PredYolo/ILSVRC2012_val_00000006.JPEG "")

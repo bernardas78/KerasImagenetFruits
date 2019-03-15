@@ -1,0 +1,1 @@
+Foreach ($f in Get-ChildItem "c:\labs\KerasImagenetFruits\Visuals\PredYolo") {    echo ("![alt text](Visuals/PredYolo/" + $f.Name + " """")" )    }
