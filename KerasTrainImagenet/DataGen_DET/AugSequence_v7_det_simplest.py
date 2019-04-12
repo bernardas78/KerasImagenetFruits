@@ -18,7 +18,7 @@ from keras.applications.vgg16 import preprocess_input
 class AugSequence (keras.utils.Sequence):
 
     def __init__(self, crop_range=1, target_size=224, batch_size=32, subdiv=3, \
-        test=False, shuffle=True, datasrc="ilsvrc14_DET", debug=False):         
+        preprocess="vgg", test=False, shuffle=True, datasrc="ilsvrc14_DET", debug=False):         
        
         #det_cat_hier_file = 'd:\ILSVRC14\det_cathier.obj'
         det_cat_desc_file = 'd:\ILSVRC14\det_catdesc.obj'
@@ -29,6 +29,7 @@ class AugSequence (keras.utils.Sequence):
         self.batch_size = batch_size
         self.subdiv = subdiv
         self.shuffle = shuffle
+        self.preprocess = preprocess
 
         #it used to throw file truncated error. bellow makes it tolerant to truncated files
         ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -142,12 +143,17 @@ class AugSequence (keras.utils.Sequence):
 
             # Pre-process input (VGG)
             now=time.time()
-            img_vgg_preprocessed = preprocess_input ( np.asarray(img_rgb) )
+            if self.preprocess=="vgg":
+                img_preprocessed = preprocess_input ( np.asarray(img_rgb) )
+            elif self.preprocess=="div255":
+                img_preprocessed = np.asarray(img_rgb) / 255.
+            else:
+                raise Exception('AugSequence_v7: unknown preprocess function')
             tm[3]+=time.time()-now
 
             now=time.time()
             #img_arr = np.asarray ( img_rgb )
-            X [ img_counter_in_batch, :, :, : ] = img_vgg_preprocessed
+            X [ img_counter_in_batch, :, :, : ] = img_preprocessed
             tm[4]+=time.time()-now
 
             now=time.time()
@@ -198,6 +204,7 @@ class AugSequence (keras.utils.Sequence):
                         print ("Error creating y:", img_filename, bbox)
             tm[5]+=time.time()-now
 
+
             #if img_filename in self.bboxes.keys():
             #    bbox_label = self.bboxes [img_filename][0][0]               # str of bboxes: [('n000001' xmin xmax ymin ymax width height) () ...] 
             #    y [ img_counter_in_batch, self.det_cats[bbox_label][0] ] = 1.    # str of det_cats [ index description ]
@@ -208,6 +215,9 @@ class AugSequence (keras.utils.Sequence):
         #print ("X.shape:", X.shape)
         if self.debug and self.cnter % 100 == 0:
             print ('Batch {0} in {1}'.format( self.cnter,  len(self) ), tm )
+
+        #DET_DEBUG
+        #y = y.reshape (img_counter_in_batch, -1) #DET_DEBUG_1
 
         #update counter : max value is len of entire imageset * crop_range^2
         self.cnter += 1

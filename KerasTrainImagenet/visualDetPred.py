@@ -30,10 +30,10 @@ det_cats = pickle.load( open('d:\ILSVRC14\det_catdesc.obj', 'rb') )
 det_cats_lst = [ det_cats[cat_name][1] for cat_name in det_cats.keys() ]
 
 # Set target size of image
-target_size = 224
+target_size = 150
 
 # Probability of object in subdivision threshold
-Pr_obj_threshold = 0.0
+Pr_obj_threshold = 0.15
 
 datasrc = "ilsvrc14_DET"
 
@@ -45,8 +45,28 @@ except:
         #crop_range=crop_range, allow_hor_flip=True, 
         batch_size=64, 
         #subtractMean=subtractMean, pca_eigenvectors=pca_eigenvectors, pca_eigenvalues=pca_eigenvalues, \
-        #preprocess="vgg",
+        #preprocess="vgg"
+        subdiv=19,
         datasrc=datasrc, test=False, debug=True )
+
+
+def getRectCoord (subdiv_x, subdiv_y, bx_rel, by_rel, subdiv_width, subdiv_height, bw_rel, bh_rel, img_width, img_height):
+    # Center (x, y), and Size (with, height) - absolute in whole image
+    bx_abs = (subdiv_x + bx_rel) * subdiv_width
+    by_abs = (subdiv_y + by_rel) * subdiv_height
+                    
+    #Temporary changed so that sigmoid works for image size
+    bw_abs = bw_rel * img_width
+    bh_abs = bh_rel * img_height
+    #bw_abs = bw_rel * subdiv_width
+    #bh_abs = bh_rel * subdiv_height
+
+    # Rectangular coordinates
+    x_rect = bx_abs - bw_abs/2
+    y_rect = by_abs - bh_abs/2
+
+    return (x_rect, y_rect, bw_abs, bh_abs)
+
 
 # Prepare predictions
 for X, y in dataGen:
@@ -57,7 +77,8 @@ for X, y in dataGen:
     for img_index in range(X.shape[0]):
 
         # Read the actual image
-        X_single = np.asarray ( Image.open( '\\'.join ( [ img_data_dir, filenames[img_index] ] ) ) )
+        #X_single = np.asarray ( Image.open( '\\'.join ( [ img_data_dir, filenames[img_index] ] ) ) )
+        X_single = X[img_index,:,:,:]
         #print (filenames[img_index], X_single.shape)
 
         #X_single = X[img_index,:,:,:]
@@ -84,39 +105,57 @@ for X, y in dataGen:
         # Display the image
         ax.imshow(X_single)
 
+        #print ("y_pred_single.shape:", y_pred_single.shape)
         for subdiv_x in range(y_pred_single.shape[0]):
             for subdiv_y in range(y_pred_single.shape[1]):
                 # Create a Rectangle patch
 
                 # Probability of the object in the subdivision
                 Pr_obj = y_pred_single [ subdiv_x, subdiv_y, 0 ]
+                Pr_true_obj = y_single [ subdiv_x, subdiv_y, 0 ]
 
                 # Highest class probability
-                Pr_top_class = np.argmax( y_pred_single [ subdiv_x, subdiv_y, 5: ] )
-                Pr_top_class_name = det_cats_lst[Pr_top_class]
+                if y_pred_single.shape[2]>5:
+                    Pr_top_class = np.argmax( y_pred_single [ subdiv_x, subdiv_y, 5: ] )
+                    Pr_top_class_name = det_cats_lst[Pr_top_class]
 
                 # Center (x, y), and Size (with, height) of bounding box - relative to subdivision
                 bx_rel, by_rel, bw_rel, bh_rel = y_pred_single [ subdiv_x, subdiv_y, 1:5 ]
+                bx_rel_true, by_rel_true, bw_rel_true, bh_rel_true = y_single [ subdiv_x, subdiv_y, 1:5 ]
 
-                # Draw rectangle if Pr_obj exceeds the threshold
+                # Draw true bboxes in green 
+                if Pr_true_obj > 0.99:
+                    (x_rect_true, y_rect_true, bw_abs_true, bh_abs_true) = getRectCoord \
+                        (subdiv_x, subdiv_y, bx_rel_true, by_rel_true, subdiv_width, subdiv_height, bw_rel_true, bh_rel_true, img_width, img_height)
+                    rect = patches.Rectangle((x_rect_true,y_rect_true),bw_abs_true,bh_abs_true,linewidth=8.*Pr_true_obj,edgecolor='g',facecolor='none')
+
+                    # Add the patch to the Axes
+                    ax.add_patch(rect)
+
+                # Draw rectangle if Pr_obj exceeds the threshold in red
                 if Pr_obj > Pr_obj_threshold:
                     # Center (x, y), and Size (with, height) - absolute in whole image
                     bx_abs = (subdiv_x + bx_rel) * subdiv_width
                     by_abs = (subdiv_y + by_rel) * subdiv_height
-                    bw_abs = bw_rel * subdiv_width
-                    bh_abs = bh_rel * subdiv_height
+                    
+                    #Temporary changed so that sigmoid works for image size
+                    bw_abs = bw_rel * img_width
+                    bh_abs = bh_rel * img_height
+                    #bw_abs = bw_rel * subdiv_width
+                    #bh_abs = bh_rel * subdiv_height
 
                     # Rectangular coordinates
                     x_rect = bx_abs - bw_abs/2
                     y_rect = by_abs - bh_abs/2
 
-                    rect = patches.Rectangle((x_rect,y_rect),bw_abs,bh_abs,linewidth=4*Pr_obj,edgecolor='r',facecolor='none')
+                    rect = patches.Rectangle((x_rect,y_rect),bw_abs,bh_abs,linewidth=4.*Pr_obj,edgecolor='r',facecolor='none')
 
                     # Add the patch to the Axes
                     ax.add_patch(rect)
 
                     #Just above the rectangle write a top class name
-                    ax.text( x_rect,y_rect, Pr_top_class_name, fontsize=12, verticalalignment='bottom', color="red")
+                    if y_pred_single.shape[2]>5:
+                        ax.text( x_rect,y_rect, Pr_top_class_name, fontsize=12, verticalalignment='bottom', color="red")
             
         #plt.show()
 

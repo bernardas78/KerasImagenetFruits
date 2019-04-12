@@ -55,6 +55,12 @@
     <Compile Include="Model\Model_v2_addDropout.py" />
     <Compile Include="Model_DET\Model_v14_det_nonVgg.py" />
     <Compile Include="Model_DET\Model_v13_det_simplest.py" />
+    <Compile Include="Model_DET\Model_v20_det_3cnn2dense.py" />
+    <Compile Include="Model_DET\Model_v19_det_vgg.py" />
+    <Compile Include="Model_DET\Model_v18_det_BnBetweenCnn.py" />
+    <Compile Include="Model_DET\Model_v17_det_lossPrObjPrNoobj.py" />
+    <Compile Include="Model_DET\Model_v16_det_lossReduceBbox.py" />
+    <Compile Include="Model_DET\Model_v15_det_linearBbox.py" />
     <Compile Include="PCA.py" />
     <Compile Include="Training\KeepTraining_v222_less_shifting.py" />
     <Compile Include="Training\LoadAndTrain_v221_longer.py">
@@ -120,6 +126,14 @@
     <Compile Include="Training\Train_v5_8x8shifts.py" />
     <Compile Include="Training_DET\Train_v63_nonVgg.py" />
     <Compile Include="Training_DET\Train_v62_det_simplest.py" />
+    <Compile Include="Training_DET\Train_v64_det_linearBbox.py" />
+    <Compile Include="Training_DET\Train_v71_3cnn2dense.py" />
+    <Compile Include="Training_DET\Train_v69_det_BnBetweenCnn.py" />
+    <Compile Include="Training_DET\Train_v68_det_PrObjvsPrNoObj.py" />
+    <Compile Include="Training_DET\Train_v67_det_lossReduceBbox.py" />
+    <Compile Include="Training_DET\Train_v66_subdiv3to19.py" />
+    <Compile Include="Training_DET\Train_v65_det_preprocessNonVgg.py" />
+    <Compile Include="Training_DET\Train_v70_det_vgg.py" />
     <Compile Include="visualDetPred.py">
       <SubType>Code</SubType>
     </Compile>

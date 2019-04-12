@@ -2,12 +2,13 @@
 #   Sample downloaded from https://elitedatascience.com/keras-tutorial-deep-learning-in-python
 #
 # To run: 
-#   model = m_det_v13.prepModel ( target_size=224 ) 
+#   model = m_det_v14.prepModel ( target_size=224 ) 
 # To load:
-#   model = load_model ('d:\ilsvrc14\models\model_v62.h5', custom_objects={'loss_det': m_det_v13.loss_det})
+#   model = load_model ('d:\ilsvrc14\models\model_v63.h5', custom_objects={'loss_det': m_det_v13.loss_det})
 
+#from keras.activations import relu
 from keras.models import Model, Sequential
-from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Reshape, Flatten, Concatenate
+from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Reshape, Flatten, Concatenate, BatchNormalization, Activation
 from keras.initializers import RandomNormal
 from keras.optimizers import SGD
 from keras.metrics import top_k_categorical_accuracy
@@ -90,13 +91,19 @@ def prepModel( input_shape=(150,150,3), \
         base_model.add ( MaxPooling2D ( pool_size = ( L5MaxPool_size , L5MaxPool_size ), strides = ( L5MaxPool_stride, L5MaxPool_stride ) ) )
 
     base_model.add(Flatten())
+
     
-    base_model.add(Dense(D1_size, activation='relu'))
+    #base_model.add(Dense(D1_size, activation='relu'))
+    base_model.add(Dense(D1_size))
+    base_model.add(BatchNormalization(center=False, scale=False))
+    base_model.add(Activation('relu'))
+
     if D1_dropout > 0.:
         base_model.add ( Dropout ( D1_dropout ) )
     
     if D2_size is not None:
         base_model.add (Dense(D2_size, activation='relu'))
+        #base_model.add(BatchNormalization())
         if D2_dropout > 0.:
             base_model.add ( Dropout ( D2_dropout ) )
     #endregion
@@ -118,7 +125,7 @@ def prepModel( input_shape=(150,150,3), \
     #init_d3_probj = RandomNormal(mean=0.0, stddev=np.sqrt(2/D2_size), seed=None)
     d3_probj = Dense( subdiv**2 * 1 , activation='sigmoid', name="d3_probj")( base_model.output )
     #C_LAST_DEBUGd3_bbox = Dense( subdiv**2 * 4 , name="d3_bbox")( d2 )
-    d3_bbox = Dense( subdiv**2 * 4 , activation='relu', name="d3_bbox")( base_model.output )
+    d3_bbox = Dense( subdiv**2 * 4 , activation='sigmoid', name="d3_bbox")( base_model.output )
     #d3_class = Dense( subdiv**2 * cnt_classes , activation='sigmoid', name="d3_class")( d2 ) # need be separate softmax for each subdivision
 
     d3_probj_resh = Reshape((subdiv, subdiv, 1), name='d3_probj_resh')( d3_probj )
@@ -130,6 +137,7 @@ def prepModel( input_shape=(150,150,3), \
     #y_pred = Concatenate (axis=-1, name='predictions')( [d3_probj_resh, d3_bbox_resh, d3_class_resh] )
     #y_pred = d3_bbox_resh  #DET_DEBUG
     #C_LAST_DEBUGy_pred = d3_resh
+    #d3_resh = Dense( subdiv**2 * 5 , activation='sigmoid', name="d3_probj")( base_model.output ) #DET_DEBUG_1
     y_pred = d3_resh
 
     # this is the model we will train
@@ -142,8 +150,8 @@ def prepModel( input_shape=(150,150,3), \
     #    return top_k_categorical_accuracy(y_true, y_pred, k=5)
 
     model.compile( \
-        loss='mse',\
-        #loss=loss_det,\
+        #loss='mse',\
+        loss=loss_det,\
         optimizer=optimizer)
         #optimizer='sgd')
         #metrics=['accuracy'])
@@ -193,7 +201,7 @@ def loss_det(y_true, y_pred):
     # Give weights: average per coordinate and average per class
     #Loss = Loss_bbox /4. #/ K.tf.to_float (Obj_count)
     #Loss = K.mean (K.square (y_pred - y_true))
-    Loss = K.tf.to_float(Loss_pr_obj) #+ K.tf.to_float(Loss_bbox)
+    Loss = K.tf.to_float(Loss_pr_obj) + K.tf.to_float(Loss_bbox)
     #Loss = Loss_class /200. / K.tf.to_float (Obj_count)
     
     # Pr_obj loss only

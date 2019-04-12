@@ -14,6 +14,8 @@ from keras import backend as K
 import tensorflow as tf
 import numpy as np
 from Model_DET import Model_v13_det_simplest as m_det_v13
+import keras.losses
+#import keras.losses.mean_squared_error
 
 #dataGen = as_det_v7.AugSequence ( target_size=224, batch_size=64, datasrc="ilsvrc14_DET", test=False, debug=True )
 
@@ -95,8 +97,9 @@ def getGraAll():
     print ("GRADIENTS SUMMARY")
 
     # Calculate gradients
-    loss = m_det_v13.loss_det ( y_true, model.output )
+    loss = m_det_v20.loss_det ( y_true, model.output )
     #loss = K.sum ( K.categorical_crossentropy ( y_true, model.output) )
+    #loss = keras.losses.mean_squared_error(y_true, model.output)
     gradients = K.gradients ( loss, model.trainable_weights ) 
     sess = K.get_session()
     (evaluated_loss, evaluated_gradients) = sess.run ( [loss, gradients], feed_dict = {model.input:X} )

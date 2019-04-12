@@ -34,6 +34,12 @@ from Model import Model_v12_pretVggMinusDense as m_v12
 
 from Model_DET import Model_v13_det_simplest as m_det_v13
 from Model_DET import Model_v14_det_nonVgg as m_det_v14
+from Model_DET import Model_v15_det_linearBbox as m_det_v15
+from Model_DET import Model_v16_det_lossReduceBbox as m_det_v16
+from Model_DET import Model_v17_det_lossPrObjPrNoobj as m_det_v17
+from Model_DET import Model_v18_det_BnBetweenCnn as m_det_v18
+from Model_DET import Model_v19_det_vgg as m_det_v19
+from Model_DET import Model_v20_det_3cnn2dense as m_det_v20
 
 from Training import Train_v1_simple1 as t_v1
 from Training import Train_v2_addDropout as t_v2
@@ -82,7 +88,15 @@ from Training import Train_v60_vggD2dropout as t_v60
 from Training import Train_v61_customDataGen as t_v61
 
 from Training_DET import Train_v62_det_simplest as t_det_v62
-from Training_DET import Train_v63_nonVgg  as t_det_v63
+from Training_DET import Train_v63_nonVgg as t_det_v63
+from Training_DET import Train_v64_det_linearBbox as t_det_v64
+from Training_DET import Train_v65_det_preprocessNonVgg as t_det_v65
+from Training_DET import Train_v66_subdiv3to19 as t_det_v66
+from Training_DET import Train_v67_det_lossReduceBbox as t_det_v67
+from Training_DET import Train_v68_det_PrObjvsPrNoObj as t_det_v68
+from Training_DET import Train_v69_det_BnBetweenCnn as t_det_v69
+from Training_DET import Train_v70_det_vgg as t_det_v70
+from Training_DET import Train_v71_3cnn2dense as t_det_v71
 
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -119,6 +133,12 @@ def re():
 
     importlib.reload(m_det_v13)
     importlib.reload(m_det_v14)
+    importlib.reload(m_det_v15)
+    importlib.reload(m_det_v16)
+    importlib.reload(m_det_v17)
+    importlib.reload(m_det_v18)
+    importlib.reload(m_det_v19)
+    importlib.reload(m_det_v20)
 
     importlib.reload(t_v1)
     importlib.reload(t_v2)
@@ -168,6 +188,14 @@ def re():
 
     importlib.reload(t_det_v62)
     importlib.reload(t_det_v63)
+    importlib.reload(t_det_v64)
+    importlib.reload(t_det_v65)
+    importlib.reload(t_det_v66)
+    importlib.reload(t_det_v67)
+    importlib.reload(t_det_v68)
+    importlib.reload(t_det_v69)
+    importlib.reload(t_det_v70)
+    importlib.reload(t_det_v71)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
