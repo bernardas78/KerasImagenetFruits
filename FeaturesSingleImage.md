@@ -16,6 +16,8 @@ Bellow are 3 images of subsequent layers: 2 convolutional + 1 maxpooling
 ## Result of convolutions of the 5 CNN layers
 
 Bellow is the result of the circumvented CNN layers of VGG
+Note how in the beginning layers object can still be visually recognized by a human.
+Note that from later layers one cannot easily identify the object. Later layers contain less information, those are extracted features. Some combination of the last layer features determine the class of the object. 
 ![alt text](Visuals/ActivationsSingleImage/vgg_arch_5cnn.jpg "")
 
 ![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "")
