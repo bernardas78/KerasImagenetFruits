@@ -21,11 +21,11 @@ Note that from later layers one cannot easily identify the object. Later layers 
 
 Convolution 1 | Convolution 2 | Convolution 3 | Max pooling 
 --- | --- | --- 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
 
 
 
