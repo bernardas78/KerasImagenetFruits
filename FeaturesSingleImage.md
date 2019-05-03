@@ -11,9 +11,7 @@ Bellow are 3 images of subsequent layers: 2 convolutional + 1 maxpooling
 (Note how the maxpooling layer "sharpens" the image (e.g. neuron in row 1, col 5))
 ![alt text](Visuals/ActivationsSingleImage/vgg_arch_3first.jpg "")
 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/1.block1_conv2_0-64.jpg" width="200" height="200" />
-<img src="Visuals/ActivationsSingleImage/0/2.block1_pool_0-64.jpg" width="200" height="200" />
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/1.block1_conv2_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/2.block1_pool_0-64.jpg" width="200" height="200" />
 
 ## Result of convolutions of the 5 CNN layers
 
