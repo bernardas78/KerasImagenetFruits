@@ -1,5 +1,10 @@
 ## Hidden features of a single image
 
+Column 1 | Column 2 | Column 3
+--- | --- | ---
+![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "")
+![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | *__Look__* | `Pretty`
+
 Intermediate (hidden) layer activations of a single image using pre-trained VGG network.
 
 ### Original image:
