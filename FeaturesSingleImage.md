@@ -1,14 +1,5 @@
 ## Hidden features of a single image
 
-| Italic             |  Block letters |  Block letters |
-:-------------------------:|:-------------------------:
-![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)  |  ![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)  |  ![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)
-
-
-| Italic             |  Block letters |  Block letters  |  Block letters
-:-------------------------:|:-------------------------:
-![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)  |  ![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)  |  ![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)  |  ![](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg)
-
 
 Intermediate (hidden) layer activations of a single image using pre-trained VGG network.
 
@@ -32,13 +23,9 @@ Note that from later layers one cannot easily identify the object. Later layers 
 
 
 
-Convolution 1 | Convolution 2 | Convolution 3 | Max pooling 
---- | --- | --- 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
-<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> |  | <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
+<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /><img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="200" height="200" /> 
 
 
 
