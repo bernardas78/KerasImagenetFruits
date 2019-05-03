@@ -134,6 +134,7 @@
     <Compile Include="Training_DET\Train_v66_subdiv3to19.py" />
     <Compile Include="Training_DET\Train_v65_det_preprocessNonVgg.py" />
     <Compile Include="Training_DET\Train_v70_det_vgg.py" />
+    <Compile Include="visualInterimLayersSinglePic.py" />
     <Compile Include="visualDetPred.py">
       <SubType>Code</SubType>
     </Compile>
