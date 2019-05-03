@@ -1,10 +1,5 @@
 ## Hidden features of a single image
 
-Column 1 | Column 2 | Column 3
---- | --- | ---
-![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "")
-![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | *__Look__* | `Pretty`
-
 Intermediate (hidden) layer activations of a single image using pre-trained VGG network.
 
 ### Original image:
@@ -23,10 +18,11 @@ Bellow are 3 images of subsequent layers: 2 convolutional + 1 maxpooling
 Bellow is the result of the circumvented CNN layers of VGG
 Note how in the beginning layers object can still be visually recognized by a human.
 Note that from later layers one cannot easily identify the object. Later layers contain less information, those are extracted features. Some combination of the last layer features determine the class of the object. 
-![alt text](Visuals/ActivationsSingleImage/vgg_arch_5cnn.jpg "")
 
-![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "")
-![alt text](Visuals/ActivationsSingleImage/0/3.block2_conv1_0-64.jpg "")
-![alt text](Visuals/ActivationsSingleImage/0/6.block3_conv1_0-64.jpg "")
-![alt text](Visuals/ActivationsSingleImage/0/10.block4_conv1_0-64.jpg "")
-![alt text](Visuals/ActivationsSingleImage/0/14.block5_conv1_0-64.jpg "")
+Convolution 1 | Convolution 2 | Convolution 3 | Max pooling
+--- | --- | ---
+![alt text](Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/1.block1_conv2_0-64.jpg "") |  | ![alt text](Visuals/ActivationsSingleImage/0/2.block1_pool_0-64.jpg "")
+![alt text](Visuals/ActivationsSingleImage/0/3.block2_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/4.block2_conv2_0-64.jpg "") |  | ![alt text](Visuals/ActivationsSingleImage/0/5.block2_pool_0-64.jpg "")
+![alt text](Visuals/ActivationsSingleImage/0/6.block3_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/7.block3_conv2_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/8.block3_conv3_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/9.block3_pool_0-64.jpg "")
+![alt text](Visuals/ActivationsSingleImage/0/10.block4_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/11.block4_conv2_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/12.block4_conv3_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/13.block4_pool_0-64.jpg "")
+![alt text](Visuals/ActivationsSingleImage/0/14.block5_conv1_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/15.block5_conv2_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/16.block5_conv3_0-64.jpg "") | ![alt text](Visuals/ActivationsSingleImage/0/17.block5_pool_0-64.jpg "")
