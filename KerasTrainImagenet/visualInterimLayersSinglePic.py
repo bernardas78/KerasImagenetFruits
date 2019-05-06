@@ -104,7 +104,7 @@ for image_id in range(cnt_images):
             print ("start_filter_id, end_filter_id", start_filter_id, end_filter_id)
 
             # Produce a single image
-            f, axarr = plt.subplots ( grid_size[0], grid_size[1], gridspec_kw={'wspace':0.0, 'hspace':0.05 } ) 
+            f, axarr = plt.subplots ( grid_size[0], grid_size[1], gridspec_kw={'wspace':0.0, 'hspace':0.05, 'right':1.0, 'left':0.0, 'top':1.0, 'bottom':0.0 } ) 
             f.set_size_inches (6,6)
 
             # Up to 64 subplots
