@@ -13,12 +13,13 @@ This bellow image is the VGG pre-trained network architecture.
 
 ![alt text](Visuals/ActivationsSingleImage/0/original.jpg "")
 
-## Result of convolutions of the 5 CNN layers
+## Result of convolutions of the VGG network's CNN layers
 
 - Bellow visualizations are result of convolutions of layers of pre-trained VGG of a single image. 
 - There are 5 blocks in the VGG, so there are 5 rows in table of visualizations bellow. 
 - In each row I draw the first 2 convolutions and pooling layer of the block. 
 - Although blocks 3, 4, and 5 contain 3 convolutional layers, I skip them for resolution puproses, but you can find them in the source directory.
+- I display up to 64 images per layer, although 2-5 blocks contain more filters (up to 512)
 
 To note:
 - In the beginning layers object can still be visually recognized by a human. 
