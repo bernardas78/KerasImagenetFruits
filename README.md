@@ -40,7 +40,7 @@
 [More...](TopPredictions.md)
 
 
-## Intermediate layers: 
+## Intermediate layers - what activates a neuron? 
 - As each neuron activates on a rather small patch of an image
 - I pick a random neuron from some layer
 - For the given neuron, I loop through the data set to get the images which activate the given neuron the most
@@ -58,3 +58,9 @@ How to understand the images bellow:
 ![alt text](Visuals/V40/L3/interim_19.jpg "")
 
 Check more images of intermediate convolutional layers [L1](L1_intermediate.md), [L2](L2_intermediate.md), [L3](L3_intermediate.md), [L4](L4_intermediate.md), [L5](L5_intermediate.md).
+
+## Intermediate layers - what a single image's hidden convolutional layers look like? 
+ 
+- Every convolutional layer (filter) produces a new 3D array
+- Those arrays can be visualized as a bunch of 2D gray-scale images
+- What do those images look like? - Check [this](FeaturesSingleImage.md) out 
