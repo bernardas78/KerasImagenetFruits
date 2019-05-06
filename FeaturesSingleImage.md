@@ -3,30 +3,33 @@
 
 Intermediate (hidden) layer activations of a single image using pre-trained VGG network.
 
+
+### Subsequent CNN, Pooling
+
+This bellow image is the VGG pre-trained network.
+![alt text](Visuals/ActivationsSingleImage/vgg_arch.jpg "")
+
 ### Original image:
 
 ![alt text](Visuals/ActivationsSingleImage/0/original.jpg "")
 
-### Subsequent CNN, Pooling
-Bellow are 3 images of subsequent layers: 2 convolutional + 1 maxpooling
-![alt text](Visuals/ActivationsSingleImage/vgg_arch.jpg "")
-
-
 ## Result of convolutions of the 5 CNN layers
 
-Bellow is the result of the circumvented CNN layers of VGG 
+Bellow visualizations are result of convolutions of each layer of pre-trained VGG of a single image. 
+There are 5 blocks in the VGG, so there are 5 rows in table of visualizations bellow.
+In each row I draw the first 2 convolutions and pooling layer of the block. Although blocks 3, 4, and 5 contain 3 convolutional layers, I skip them for resolution puproses, but you can find them in the source directory.
 
 Note how in the beginning layers object can still be visually recognized by a human. 
 In later layers one cannot easily identify the object. Later layers contain less information, those are extracted features. Some combination of the last layer features determine the class of the object. 
  
 Note how the maxpooling layer "sharpens" the image (due to resolutions, this can best be seen in last block
 
-| Block | Convolution 1 | Convolution 2 | Max-Pool |
+| Blck | Convolution 1 | Convolution 2 | Max-Pool |
 |:-----:|:-------------:|:-------------:|:--------:|
 | 1 |<img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/1.block1_conv2_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/2.block1_pool_0-64.jpg" width="280" height="280" />  |
 | 2 |<img src="Visuals/ActivationsSingleImage/0/3.block2_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/4.block2_conv2_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/5.block2_pool_0-64.jpg" width="280" height="280" />  |
 | 3 |<img src="Visuals/ActivationsSingleImage/0/6.block3_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/7.block3_conv2_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/9.block3_pool_0-64.jpg" width="280" height="280" />  |
-| 4 |<img src="Visuals/ActivationsSingleImage/0/10.block4_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/11.block4_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/13.block4_conv2_0-64.jpg" width="280" height="280" /> |
+| 4 |<img src="Visuals/ActivationsSingleImage/0/10.block4_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/11.block4_conv2_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/13.block4_pool_0-64.jpg" width="280" height="280" /> |
 | 5 |<img src="Visuals/ActivationsSingleImage/0/14.block5_conv1_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/15.block5_conv2_0-64.jpg" width="280" height="280" />|<img src="Visuals/ActivationsSingleImage/0/17.block5_pool_0-64.jpg" width="280" height="280" />  |
 
 
