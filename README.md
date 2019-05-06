@@ -65,4 +65,5 @@ Check more images of intermediate convolutional layers [L1](L1_intermediate.md),
 - Those arrays can be visualized as a bunch of 2D gray-scale images
 - What do those images look like? - Check [this](FeaturesSingleImage.md) out 
 - Here is just a sample: original image and 1-st convolution 
+ 
 <img src="Visuals/ActivationsSingleImage/0/original.jpg" width="280" height="280" /> <img src="Visuals/ActivationsSingleImage/0/0.block1_conv1_0-64.jpg" width="280" height="280" />
