@@ -52,6 +52,18 @@ class AugSequence (keras.utils.Sequence):
                 data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_val_unp"
             else:
                 data_dir = "D:\\ILSVRC14\\ILSVRC2012_img_train_unp"
+        #elif datasrc == "sco_initial":
+        #    if test:
+        #        data_dir = "D:\\Startup\\cs_images_20190509_val"
+        #        #raise Exception('AugSequence: no test set defined for ' + datasrc)
+        #    else:
+        #        data_dir = "D:\\Startup\\cs_images_20190509_train"
+        elif datasrc == "sco_v2":
+            if test:
+                data_dir = "C:\\TrainAndVal\\Val"
+                #raise Exception('AugSequence: no test set defined for ' + datasrc)
+            else:
+                data_dir = "C:\\TrainAndVal\\Train"
         else:
             raise Exception('AugSequence: unknown datasrc')
 

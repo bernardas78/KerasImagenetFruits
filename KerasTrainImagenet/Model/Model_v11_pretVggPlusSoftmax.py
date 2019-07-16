@@ -4,7 +4,7 @@
 # To run: 
 #   model = m_v10.prepModel()
 # To load a trained model:
-#   model = load_model("D:\ILSVRC14\models\model_v55.h5", custom_objects={'top_5': m_v10.top_5})
+#   model = load_model("D:\ILSVRC14\models\model_v55.h5", custom_objects={'top_5': m_v11.top_5})
 
 from keras.models import Model
 from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout

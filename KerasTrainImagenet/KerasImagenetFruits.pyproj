@@ -134,6 +134,8 @@
     <Compile Include="Training_DET\Train_v66_subdiv3to19.py" />
     <Compile Include="Training_DET\Train_v65_det_preprocessNonVgg.py" />
     <Compile Include="Training_DET\Train_v70_det_vgg.py" />
+    <Compile Include="Training_SCO\Train_v202_morePics.py" />
+    <Compile Include="Training_SCO\Train_v201_sco_vggPret.py" />
     <Compile Include="visualInterimLayersSinglePic.py" />
     <Compile Include="visualDetPred.py">
       <SubType>Code</SubType>
@@ -149,10 +151,11 @@
     <Compile Include="visualPred.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="visualPredConfidence_v202.py" />
     <Compile Include="visualPredConfidence.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="visualPredHeatmap.py">
+    <Compile Include="visualPredHeatmap_v202.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPredImagenet.py" />
@@ -163,6 +166,7 @@
     <Folder Include="Evaluation\" />
     <Folder Include="DataGen_DET\" />
     <Folder Include="Model_DET\" />
+    <Folder Include="Training_SCO\" />
     <Folder Include="Training_DET\" />
     <Folder Include="Training\" />
   </ItemGroup>

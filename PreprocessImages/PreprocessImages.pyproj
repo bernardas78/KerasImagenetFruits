@@ -23,6 +23,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="backgroundRemove_all.py" />
+    <Compile Include="backgroundRemove_2imgs.py" />
+    <Compile Include="backgroundRemove_video.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="detFilenamesToListToFile.py" />
     <Compile Include="imagenetCatHierToDictToFile.py">
       <SubType>Code</SubType>

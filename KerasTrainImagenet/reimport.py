@@ -98,6 +98,9 @@ from Training_DET import Train_v69_det_BnBetweenCnn as t_det_v69
 from Training_DET import Train_v70_det_vgg as t_det_v70
 from Training_DET import Train_v71_3cnn2dense as t_det_v71
 
+from Training_SCO import Train_v201_sco_vggPret as t_sco_v201
+from Training_SCO import Train_v202_morePics as t_sco_v202
+
 from Evaluation import Eval_v1_simple as e_v1
 from Evaluation import Eval_v2_top5accuracy as e_v2
 from Evaluation import Eval_v3_5framesaccuracy as e_v3
@@ -196,6 +199,9 @@ def re():
     importlib.reload(t_det_v69)
     importlib.reload(t_det_v70)
     importlib.reload(t_det_v71)
+
+    importlib.reload(t_sco_v201)
+    importlib.reload(t_sco_v202)
 
     importlib.reload(e_v1)
     importlib.reload(e_v2)
