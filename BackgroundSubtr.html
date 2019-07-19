@@ -11,11 +11,11 @@
 <li>Customer places items 1 by 1 in bagging area</li>
 <li>Sometimes items not scanned are placed into bagging area with purpose to steal them</li>
 <li>Upon encountering a new item in bagging area which was not scanned - an alert may be generated to a store attendant</li>
-<li>Purpose of this task is to detect an d localize new item in bagging area</li>
+<li>Purpose of this task is to detect and localize new items in bagging area</li>
 </ul>
 <h2 id="techniques-used">Techniques used</h2>
 <ul>
-<li>Motion detection is done using a simple KNN background subtractor, comparing a previous frame with current</li>
+<li>Motion detection is done using Open CV background subtractor, comparing a previous frame with current</li>
 <li>After motion stops (presumably, customer moved his arm away from bagging area and left the item there):
 <ul>
 <li>MOG2 bacground subtractor ( <em>cv.createBackgroundSubtractorMOG2()</em> )</li>
@@ -63,7 +63,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">800 <span style="color:red"><strong>(too noisy around mushrooms)</strong></span></td>
+<td style="text-align: center;">800 <span style="color:Red"><strong>(too noisy around mushrooms)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr800.png" width="298" height="192" /></td>
