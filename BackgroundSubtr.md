@@ -19,6 +19,6 @@
 
 | Itm\Thr | 800 | 1000 | 1200 |
 |:-----:|:-------------:|:-------------:|:--------:|
-| Bread | <img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr800.png" width="745" height="480" />|<img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1000.png" width="745" height="480" />|<img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1200.png" width="745" height="480" />  |
-| Sour cream | <img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr800.png" width="280" height="280" />|<img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1000.png" width="280" height="280" />|<img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1200.png" width="280" height="280" />  |
-| Mushrooms | <img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr800.png" width="280" height="280" />|<img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1000.png" width="280" height="280" />|<img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1200.png" width="280" height="280" />  |
+| Bread | <img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr800.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1000.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1200.png" width="298" height="112" />  |
+| Sour cream | <img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr800.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1000.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1200.png" width="298" height="112" />  |
+| Mushrooms | <img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr800.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1000.png" width="298" height="112" />|<img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1200.png" width="298" height="112" />  |
