@@ -51,7 +51,7 @@ Analyzed 3 situations when items were placed:
 
 | Filter | Bread |
 |:-----:|:-------------:|
-| Identity (i.e. no filter) | <img src="Visuals/BackgroundSubtr/orig/filter_identity_circum.png" width="298" height="192" />|
+| Identity (i.e. no filter) | <img src="Visuals/BackgroundSubtr/Orig/filter_identity_circum.png" width="298" height="192" />|
 | 2x2, min 2 pixels | <img src="Visuals/BackgroundSubtr/filter_2by2_2min.png" width="298" height="192" />|
 | 3x3, min 5 pixels | <img src="Visuals/BackgroundSubtr/filter_3by3_5min.png" width="298" height="192" />|
 | 4x4, min 8 pixels | <img src="Visuals/BackgroundSubtr/filter_4by4_8min.png" width="298" height="192" />|
