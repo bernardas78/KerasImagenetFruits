@@ -26,6 +26,7 @@
 - Keras with Tensorflow backend
 - Very simple Convolutional Neural Network
 - To increase training set, PCA distortion was used. [More...](PcaDistort.md)
+- Bacground subtraction - to localize recently placed items in bagging area [More...](BackgroundSubtr.md)
 
 ## Results received
 - 77.8% top-1 and 94.7% top-5 accuracy (on validation set). 
