@@ -56,37 +56,6 @@
 <thead>
 <tr>
 <th style="text-align: center;">Itm\Thr</th>
-<th style="text-align: center;">800</th>
-<th style="text-align: center;">1000</th>
-<th style="text-align: center;">1200</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Bread</td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr800.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1000.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1200.png" width="298" height="192" /></td>
-</tr>
-<tr>
-<td style="text-align: center;">Sour cream</td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr800.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1000.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1200.png" width="298" height="192" /></td>
-</tr>
-<tr>
-<td style="text-align: center;">Mushrooms</td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr800.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1000.png" width="298" height="192" /></td>
-<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1200.png" width="298" height="192" /></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Mog2</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Itm\Thr</th>
 <th style="text-align: center;">Bread</th>
 <th style="text-align: center;">Sour cream</th>
 <th style="text-align: center;">Mushrooms</th>
@@ -94,7 +63,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">800</td>
+<td style="text-align: center;">800 <span style="color:red"><strong>(too noisy around mushrooms)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr800.png" width="298" height="192" /></td>
@@ -106,7 +75,7 @@
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1000.png" width="298" height="192" /></td>
 </tr>
 <tr>
-<td style="text-align: center;">1200</td>
+<td style="text-align: center;">1200 <span style="color:red"><strong>(bread becomes undetectable due to dark colors)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_mog2_Thr1200.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_mog2_Thr1200.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_mog2_Thr1200.png" width="298" height="192" /></td>
@@ -125,13 +94,13 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">400</td>
+<td style="text-align: center;">400 <span style="color:red"><strong>(too noisy around mushrooms)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_knn_Thr400.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_knn_Thr400.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_knn_Thr400.png" width="298" height="192" /></td>
 </tr>
 <tr>
-<td style="text-align: center;">800</td>
+<td style="text-align: center;">800 <span style="color:red"><strong>(still too noisy)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_knn_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_knn_Thr800.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_knn_Thr800.png" width="298" height="192" /></td>
@@ -143,19 +112,60 @@
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_knn_Thr1600.png" width="298" height="192" /></td>
 </tr>
 <tr>
-<td style="text-align: center;">2500</td>
+<td style="text-align: center;">2500 <span style="color:purple"><strong>(dark colors start to fade in bread, but still ok)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_knn_Thr2500.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_knn_Thr2500.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_knn_Thr2500.png" width="298" height="192" /></td>
 </tr>
 <tr>
-<td style="text-align: center;">4000</td>
+<td style="text-align: center;">4000 <span style="color:green"><strong>(Best!)</strong></span></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_duona_knn_Thr4000.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grietine_knn_Thr4000.png" width="298" height="192" /></td>
 <td style="text-align: center;"><img src="Visuals/BackgroundSubtr/mask_grybai_knn_Thr4000.png" width="298" height="192" /></td>
 </tr>
 </tbody>
 </table>
+<h3 id="using-filters-to-remove-small-patches-of-mask">Using filters to remove small patches of mask</h3>
+<ul>
+<li>Problem: background subtractors usually detect small patches outside of area that really changed (first image)</li>
+<li>In order to localize items, those small patches should be excluded</li>
+<li>Applying convoltional filter of [ k x k ] size to ensure at least half of pixels are classified as foreground</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filter</th>
+<th style="text-align: center;">Bread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Identity (i.e. no filter)</td>
+<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/orig/filter_identity_circum.png" width="298" height="192" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">2x2, min 2 pixels</td>
+<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/filter_2by2_2min.png" width="298" height="192" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">3x3, min 5 pixels</td>
+<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/filter_3by3_5min.png" width="298" height="192" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">4x4, min 8 pixels</td>
+<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/filter_4by4_8min.png" width="298" height="192" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">5x5, min 13 pixels <span style="color:green"><strong>(Best!)</strong></span></td>
+<td style="text-align: center;"><img src="Visuals/BackgroundSubtr/filter_5by5_13min.png" width="298" height="192" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusions">Conclusions</h2>
+<ul>
+<li>For background subtraction KNN better then MOG2</li>
+<li>Using convolutional filters for removing accidentally detected small areas works</li>
+</ul>
 
 
 </body>
