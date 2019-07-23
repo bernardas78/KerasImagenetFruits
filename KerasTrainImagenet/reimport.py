@@ -109,6 +109,9 @@ from Evaluation import Eval_v4_10framesaccuracy as e_v4
 import visualPred as vp
 import visualPredImagenet as vpi
 
+from VisualPred_SCO import visualPred_top5_v202 as vpi_v202
+
+
 def re():
     importlib.reload(as_v1)
     importlib.reload(as_v2)
@@ -210,3 +213,5 @@ def re():
     
     importlib.reload(vp)
     importlib.reload(vpi)
+
+    importlib.reload(vpi_v202)

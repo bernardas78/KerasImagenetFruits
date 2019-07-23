@@ -155,10 +155,11 @@
     <Compile Include="visualPredConfidence.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="visualPredHeatmap_v202.py">
+    <Compile Include="VisualPred_SCO\visualPredHeatmap_v202.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPredImagenet.py" />
+    <Compile Include="VisualPred_SCO\visualPred_top5_v202.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataGen\" />
@@ -166,6 +167,7 @@
     <Folder Include="Evaluation\" />
     <Folder Include="DataGen_DET\" />
     <Folder Include="Model_DET\" />
+    <Folder Include="VisualPred_SCO\" />
     <Folder Include="Training_SCO\" />
     <Folder Include="Training_DET\" />
     <Folder Include="Training\" />

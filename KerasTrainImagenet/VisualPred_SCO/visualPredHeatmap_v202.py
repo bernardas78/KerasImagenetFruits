@@ -6,8 +6,8 @@
 #   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
 #   exec(open("reimport.py").read())
-#   model = load_model("D:\\startup\\models\\model_v202_lessotherimages.h5", custom_objects={'top_5': m_v11.top_5})
-#   exec(open("visualPredHeatmap_v202.py").read())
+#   model = load_model("D:\\startup\\models\\model_v202_l16.h5", custom_objects={'top_5': m_v11.top_5})
+#   exec(open("VisualPred_SCO\\visualPredHeatmap_v202.py").read())
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -78,14 +78,27 @@ for i in range(conf_mat.shape[0]):
 
 #ax.set_title("Harvest of local farmers (in tons/year)")
 fig.tight_layout()
-plt.show()
+#plt.show()
+plt.savefig("d:\\startup\\ConfusionMatrix_v202.png")
 
 #conf_mat_nodiag = np.copy (conf_mat )
 #for i in range(50):
 #    conf_mat_nodiag[i,i]=0
 
+# Top 1 predictions
 df = pd.DataFrame()
 df["filename"]=vldDataGen.dataGen().filenames
 df["actual"]=vldDataGen.dataGen().classes
 df["pred"]=y_pred
 df.to_csv ("d:\\startup\\pred_v202.csv")
+
+# All prediction probabilities in a separate data frame
+class_count = Y_pred.shape[1]
+sample_count = Y_pred.shape[0]
+df = pd.DataFrame()
+df["filename"] = np.repeat ( np.array(vldDataGen.dataGen().filenames), class_count)
+df["actual"]= np.repeat ( vldDataGen.dataGen().classes, class_count)
+df["pred_class"]= np.tile( np.arange(class_count), sample_count)
+df["pred_prob"]= Y_pred.flatten ()
+df.to_csv ("d:\\startup\\pred_all_probs_v202.csv")
+
