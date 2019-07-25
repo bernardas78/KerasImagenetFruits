@@ -32,6 +32,7 @@
     <Compile Include="imagenetCatHierToDictToFile.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="selectiveSearch_singleFolder.py" />
     <Compile Include="voc\voc.py" />
     <Compile Include="crop_bbox.py" />
     <Compile Include="Squarize.py" />
