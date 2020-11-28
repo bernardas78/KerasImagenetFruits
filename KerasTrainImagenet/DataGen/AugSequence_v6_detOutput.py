@@ -47,6 +47,7 @@ class AugSequence (keras.utils.Sequence):
         # Extra images contain no bounding boxes (they are non-classes); eliminate them
         non_class_indices = np.where ( np.char.find ( self.img_filenames, 'extra') < 0 )[0]
         self.img_filenames = [ self.img_filenames[ind] for ind in non_class_indices ]
+
         self.img_filenames_cnt = len(self.img_filenames)
         print ("Finished loading image file names, total", self.img_filenames_cnt )
 

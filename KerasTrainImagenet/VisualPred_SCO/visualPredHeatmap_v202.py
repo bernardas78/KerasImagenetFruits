@@ -6,8 +6,17 @@
 #   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
 #   exec(open("reimport.py").read())
-#   model = load_model("D:\\startup\\models\\model_v202_l16.h5", custom_objects={'top_5': m_v11.top_5})
+#   model = load_model("D:\\startup\\models\\model_v202_16classes.h5", custom_objects={'top_5': m_v11.top_5})
 #   exec(open("VisualPred_SCO\\visualPredHeatmap_v202.py").read())
+
+#C_ITEMS_PATH = "D:\\Startup\\items.csv"
+C_ITEMS_PATH = "D:\\Dropbox\\AK Dropbox\\Data\\Classifier\\prekes_v202_16classes.csv"
+
+C_CONFUSION_MATRIX_PATH = "d:\\startup\\ConfusionMatrix_v202_16classes.png"
+
+C_TOP1_PRED_PATH = "d:\\startup\\pred_v202_16classes.csv"
+
+C_ALL_PRED_PATH = "d:\\startup\\pred_all_probs_v202_16classes.csv"
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -55,9 +64,10 @@ _ = ax.set_yticks(np.arange(conf_mat.shape[1]))
 class_names = np.array(list( vldDataGen.dataGen().class_indices.keys() )) 
 
 #Load real item names and show them on graph
-df_itembarcodes = pd.read_csv ("D:\\Startup\\items.csv", header=None, dtype="str")
+df_itembarcodes = pd.read_csv (C_ITEMS_PATH, header=None, dtype="str")
 
-item_names = [ df_itembarcodes.loc [ df_itembarcodes[0] == class_name, 1 ].values[0] for class_name in class_names ]
+#item_names = [ df_itembarcodes.loc [ df_itembarcodes[0] == class_name, 0 ].values[0] for class_name in class_names ]
+item_names= class_names
 
 _ = ax.set_xticklabels( item_names, rotation=45, ha ="right" )
 _ = ax.set_yticklabels( item_names )
@@ -70,16 +80,22 @@ _ = ax.set_yticklabels( item_names )
 #plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
 #         rotation_mode="anchor")
 
+#Temp: classes, data for training collected using Genius camera
+classes_genius = [3,4,6,10,11,15]
 # Loop over data dimensions and create text annotations.
 for i in range(conf_mat.shape[0]):
     for j in range(conf_mat.shape[1]):
-        text = ax.text(j, i, conf_mat[i, j],
-                       ha="center", va="center", color="w")
+        #if (i in classes_genius) and (j not in classes_genius) or (i==j) or (conf_mat[i, j]==0):     #SP_Test_Logitech
+        if (i not in classes_genius) and (j in classes_genius) or (i==j) or (conf_mat[i, j]==0):     #SP_Test_Logitech
+            text_color="w"
+        else:
+            text_color="r"
+        text = ax.text(j, i, conf_mat[i, j], ha="center", va="center", color=text_color)
 
 #ax.set_title("Harvest of local farmers (in tons/year)")
 fig.tight_layout()
 #plt.show()
-plt.savefig("d:\\startup\\ConfusionMatrix_v202.png")
+plt.savefig ( C_CONFUSION_MATRIX_PATH )
 
 #conf_mat_nodiag = np.copy (conf_mat )
 #for i in range(50):
@@ -90,7 +106,7 @@ df = pd.DataFrame()
 df["filename"]=vldDataGen.dataGen().filenames
 df["actual"]=vldDataGen.dataGen().classes
 df["pred"]=y_pred
-df.to_csv ("d:\\startup\\pred_v202.csv")
+df.to_csv (C_TOP1_PRED_PATH)
 
 # All prediction probabilities in a separate data frame
 class_count = Y_pred.shape[1]
@@ -100,5 +116,5 @@ df["filename"] = np.repeat ( np.array(vldDataGen.dataGen().filenames), class_cou
 df["actual"]= np.repeat ( vldDataGen.dataGen().classes, class_count)
 df["pred_class"]= np.tile( np.arange(class_count), sample_count)
 df["pred_prob"]= Y_pred.flatten ()
-df.to_csv ("d:\\startup\\pred_all_probs_v202.csv")
+df.to_csv ( C_ALL_PRED_PATH )
 

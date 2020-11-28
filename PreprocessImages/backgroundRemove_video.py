@@ -2,7 +2,7 @@
 #   Used to produce Visuals/BackgroundSubtr
 
 # To run:
-#   cd C:\labs\KerasImagenetFruits-master\PreprocessImages
+#   cd C:\labs\KerasImagenetFruits\PreprocessImages
 #   python
 #   exec(open("backgroundRemove_video.py").read())
 

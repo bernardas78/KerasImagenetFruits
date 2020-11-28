@@ -77,7 +77,7 @@ def prepModel( input_shape=(150,150,3), \
     model.add ( Dense ( Softmax_size, activation='softmax' ) )
 
     model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
+              optimizer='sgd',
               metrics=['accuracy'])
 
     return model

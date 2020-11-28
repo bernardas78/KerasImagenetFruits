@@ -3,7 +3,7 @@ import importlib
 # initial import. Calling '' from python command line will import these modules
 # , but they will only be reloaded from files by calling re() command
 # To run:
-#   cd C:\labs\KerasImagenetFruits\KerasTrainImagenet
+#   cd D:\labs\KerasImagenetFruits\KerasTrainImagenet
 #   python
 #   exec(open("reimport.py").read())
 from keras.models import load_model
@@ -109,7 +109,7 @@ from Evaluation import Eval_v4_10framesaccuracy as e_v4
 import visualPred as vp
 import visualPredImagenet as vpi
 
-from VisualPred_SCO import visualPred_top5_v202 as vpi_v202
+from Training_SCO import visualPred_top5_v202 as vpi_v202
 
 
 def re():

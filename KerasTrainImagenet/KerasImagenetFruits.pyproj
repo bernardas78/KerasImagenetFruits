@@ -134,8 +134,18 @@
     <Compile Include="Training_DET\Train_v66_subdiv3to19.py" />
     <Compile Include="Training_DET\Train_v65_det_preprocessNonVgg.py" />
     <Compile Include="Training_DET\Train_v70_det_vgg.py" />
+    <Compile Include="Training_SCO\adhoc_security_preLast__activations.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Training_SCO\get_activations.py" />
+    <Compile Include="Training_SCO\make_conf_mat.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Training_SCO\Train_v202_morePics.py" />
     <Compile Include="Training_SCO\Train_v201_sco_vggPret.py" />
+    <Compile Include="Training_SCO\train_val_activations_to_file.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="visualInterimLayersSinglePic.py" />
     <Compile Include="visualDetPred.py">
       <SubType>Code</SubType>
@@ -159,7 +169,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="visualPredImagenet.py" />
-    <Compile Include="VisualPred_SCO\visualPred_top5_v202.py" />
+    <Compile Include="Training_SCO\visualPred_top5_v202.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataGen\" />

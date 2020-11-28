@@ -9,7 +9,7 @@ class AugSequence (keras.utils.Sequence):
 
     def __init__(self, crop_range=1, allow_hor_flip=True, target_size=224, batch_size=32, \
         subtractMean = 0.0, pca_eigenvectors = None, pca_eigenvalues = None, preprocess="div255", \
-        test=False, shuffle=True, datasrc="selfCreatedGoogle", debug=False): 
+        test=False, testtest=False, shuffle=True, datasrc="selfCreatedGoogle", debug=False): 
        
         self.target_size = target_size
         self.crop_range = crop_range
@@ -60,10 +60,17 @@ class AugSequence (keras.utils.Sequence):
         #        data_dir = "D:\\Startup\\cs_images_20190509_train"
         elif datasrc == "sco_v2":
             if test:
-                data_dir = "C:\\TrainAndVal\\Val"
+                data_dir = "C:\\TrainAndVal_SPTestLab\\Val"
                 #raise Exception('AugSequence: no test set defined for ' + datasrc)
             else:
-                data_dir = "C:\\TrainAndVal\\Train"
+                data_dir = "C:\\TrainAndVal_SPTestLab\\Train"
+        elif datasrc == "sco_v3":
+            if testtest:
+                data_dir = "C:\\RetellectImages\\Test"
+            elif test:
+                data_dir = "C:\\RetellectImages\\Val"
+            else:
+                data_dir = "C:\\RetellectImages\\Train"
         else:
             raise Exception('AugSequence: unknown datasrc')
 

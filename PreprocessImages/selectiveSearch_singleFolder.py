@@ -13,7 +13,7 @@ import numpy as np
 from matplotlib import colors
 
 img_folder = 'D:\\Startup\\Visuals\\SCO_Pics\\cropped'
-processed_folder = 'D:\\Startup\\Visuals\\SCO_Pics\\processed'
+processed_folder = 'D:\\Startup\\Visuals\\SCO_Pics\\selectiveSearch'
 
 ss = cv2.ximgproc.segmentation.createSelectiveSearchSegmentation()
 
