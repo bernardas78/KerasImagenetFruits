@@ -7,8 +7,9 @@
 #from DataGen import AugSequence_v4_PcaDistortion as as_v4
 from DataGen import AugSequence_v5_vggPreprocess as as_v5
 #from Model import Model_v8_sgd as m_v8
-from Model import Model_v11_pretVggPlusSoftmax as m_v11
-from Model import Model_v7_5cnn as m_v7
+from Model import Model_v13_Visible as m_v13
+#from Model import Model_v11_pretVggPlusSoftmax as m_v11
+#from Model import Model_v7_5cnn as m_v7
 from keras.models import load_model
 #import time
 from Evaluation import Eval_v2_top5accuracy as e_v2
@@ -29,7 +30,7 @@ def trainModel( epochs = 1):
     #   model: trained Keras model
 
     crop_range = 1 # number of pixels to crop image (if size is 235, crops are 0-223, 1-224, ... 11-234)
-    target_size = 150
+    target_size = 256
     datasrc = "sco_v3"
     #Softmax_size=33
     
@@ -49,7 +50,7 @@ def trainModel( epochs = 1):
 
     Softmax_size=len(dataGen.dataGen().class_indices)
 
-    model = m_v7.prepModel (Softmax_size=Softmax_size, L1MaxPool_size_stride=(2,2), L2MaxPool_size_stride=(2,2), L5MaxPool_size_stride=(2,2) )
+    model = m_v13.prepModel (Softmax_size=Softmax_size, L1MaxPool_size_stride=(2,2), L2MaxPool_size_stride=(2,2), L5MaxPool_size_stride=(2,2) )
     model.summary()
 
     #prepare a validation data generator, used for early stopping

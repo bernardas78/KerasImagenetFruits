@@ -31,6 +31,7 @@ from Model import Model_v9_noDropout as m_v9
 from Model import Model_v10_vgg as m_v10
 from Model import Model_v11_pretVggPlusSoftmax as m_v11
 from Model import Model_v12_pretVggMinusDense as m_v12
+from Model import Model_v13_Visible as m_v13
 
 from Model_DET import Model_v13_det_simplest as m_det_v13
 from Model_DET import Model_v14_det_nonVgg as m_det_v14
@@ -136,6 +137,7 @@ def re():
     importlib.reload(m_v10)
     importlib.reload(m_v11)
     importlib.reload(m_v12)
+    importlib.reload(m_v13)
 
     importlib.reload(m_det_v13)
     importlib.reload(m_det_v14)

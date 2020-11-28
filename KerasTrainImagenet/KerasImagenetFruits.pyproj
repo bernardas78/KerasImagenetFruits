@@ -45,6 +45,7 @@
     <Compile Include="Model\Model_v10_vgg.py" />
     <Compile Include="Model\Model_v12_pretVggMinusDense.py" />
     <Compile Include="Model\Model_v11_pretVggPlusSoftmax.py" />
+    <Compile Include="Model\Model_v13_Visible.py" />
     <Compile Include="Model\Model_v9_noDropout.py" />
     <Compile Include="Model\Model_v8_sgd.py" />
     <Compile Include="Model\Model_v7_5cnn.py" />
