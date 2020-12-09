@@ -9,17 +9,19 @@ from keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, A
 #from tensorflow.keras.models import Sequential
 #from tensorflow.keras.layers import Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, Activation, BatchNormalization
 from keras import regularizers
+import numpy as np
+from keras.optimizers import Adam
 
-def prepModel( Softmax_size ) :
+def prepModel( target_size, Softmax_size ) :
 
-    input_shape = (Softmax_size,Softmax_size,3)
+    input_shape = (target_size,target_size,3)
     bn_layers= ["c+1", "c+2", "c+3", "c+4", "c+5", "c+6", "c+7", "c+8", "d-2", "d-3"]
-    dropout_layers: ["d-2", "d-3"]
-    l2_layers: {}
-    padding: "same"
-    dense_sizes: {"d-3": 256, "d-2": 128, "d-1": 2}
-    conv_layers_over_5: 2
-    use_maxpool_after_conv_layers_after_5th: [False, True]
+    dropout_layers= ["d-2", "d-3"]
+    l2_layers= {}
+    padding= "same"
+    dense_sizes= {"d-3": 256, "d-2": 128, "d-1": Softmax_size}
+    conv_layers_over_5= 2
+    use_maxpool_after_conv_layers_after_5th= [False, True]
 
     model = Sequential()
 
@@ -97,7 +99,7 @@ def prepModel( Softmax_size ) :
     model.add(Dense(d_1_size, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer='adam',
+                  optimizer=Adam(lr=0.001), #'adam', # default LR: 0.001
                   metrics=['accuracy'])
 
     return model
